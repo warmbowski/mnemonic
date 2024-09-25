@@ -2,7 +2,7 @@
 
 An expanded digital version of the basic card matching game Concentration. This is a multiplayer online version built for the Rune social gaming platform.
 
-Basic gameplay to implement:
+#### Basic gameplay to implement:
 
 - [x] Create list of paired items and shuffle and render into a grid layout.
 - [x] Implement basic game logic for two players, rendering guesses in realtime and alternating between players when guess is not a match
@@ -15,7 +15,7 @@ Basic gameplay to implement:
 - [ ] i18n the app
 - [ ] support single player mode
 
-Expanded gameplay ideas to implement:
+#### Expanded gameplay ideas to implement:
 
 - [ ] Support multiplayer > 2
 - [ ] Adjustable game size
@@ -32,9 +32,13 @@ Expanded gameplay ideas to implement:
   - Lose points equal to score of next item revealed
 - [ ] Persist game stats for each player: PRs, Totals, etc
 
-Expanded UX ideas:
+#### Expanded UX ideas:
 
 - [ ] Add ability to unlock new themes
+
+#### Codebase improvements
+
+- [ ] move to monorepo and break components and logic into local packages to be used on other playforms.
 
 ## Getting Started with Rune
 
