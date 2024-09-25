@@ -10,10 +10,14 @@ Basic gameplay to implement:
 - [x] Add scoring to matched pairs that is added to users score when match is obtained
 - [x] Render players and their basic game stats (number of matches and score)
 - [x] Stub in basic UX design
+- [ ] Add options and start splash screen before gameplay begins
 - [ ] Design a great UI theme with cool animations that make for a very pleasant game experience
+- [ ] i18n the app
+- [ ] support single player mode
 
 Expanded gameplay ideas to implement:
 
+- [ ] Support multiplayer > 2
 - [ ] Adjustable game size
 - [ ] Game time limit
 - [ ] Turn time limit
