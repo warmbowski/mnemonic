@@ -1,5 +1,6 @@
 import type { PlayerId, RuneClient } from "rune-sdk"
-import { createMatrix, revealItem, shuffleMatrix } from "./logic/actions"
+import { revealItem } from "./logic/actions"
+import { createMatrix, shuffleMatrix } from "./logic/utils"
 
 export type GameResult = "WON" | "LOST" | "TIE"
 
