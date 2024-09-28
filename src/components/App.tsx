@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { PlayerId } from "rune-sdk"
+import clsx from "clsx"
 
 import selectSoundAudio from "../assets/select.wav"
 import { GameState } from "../logic"
@@ -7,7 +8,8 @@ import {
   getCurrentPlayerId,
   getPlayerIndex,
   getPlayerMatchLists,
-} from "../logic/actions"
+} from "../logic/utils"
+import * as styles from "./app.css"
 
 const selectSound = new Audio(selectSoundAudio)
 
@@ -46,54 +48,57 @@ export function App() {
   return (
     <>
       <div
-        id="board"
-        className={
-          game.currentTurn?.playerId === yourPlayerId ? "your-turn" : ""
-        }
+        className={clsx(
+          styles.board,
+          game.currentTurn?.playerId === yourPlayerId
+            ? styles.yourTurn
+            : styles.notYourTurn
+        )}
+        data-your-turn={game.currentTurn?.playerId === yourPlayerId}
       >
-        {matrix.map((card, index) => (
+        {matrix.map((item, index) => (
           <div
-            className={[
-              "card",
-              card.show ? `player-${getPlayerIndex(game, card.show)}` : "",
-            ].join(" ")}
-            key={card.id}
-            data-card={card.rank}
+            key={item.id}
+            className={clsx(styles.matrixItem, styles.match)}
+            data-guesser={
+              item.show ? `player${getPlayerIndex(game, item.show)}` : ""
+            }
             onClick={() => {
-              navigator.vibrate(100)
+              if (navigator.vibrate) navigator.vibrate(100)
               Rune.actions.revealItem(index)
             }}
           >
-            {card.show && (
+            {item.show && (
               <>
-                <span>{card.rank}</span>
-                <span>{card.score > 0 ? `+${card.score}` : card.score}</span>
+                <span>{item.rank}</span>
+                <span>{item.score > 0 ? `+${item.score}` : item.score}</span>
               </>
             )}
           </div>
         ))}
       </div>
-      <ul id="playersSection">
+      <ul className={styles.playerList}>
         {playerIds.map((playerId, index) => {
           const player = Rune.getPlayerInfo(playerId)
 
           return (
             <li
               key={playerId}
+              className={styles.playerListItem}
               data-player={`${index}`}
               data-your-turn={String(
                 playerIds[index] === getCurrentPlayerId(game) &&
                   !gameOverResults
               )}
             >
-              <div style={{ position: "relative" }}>
-                <div className="count-badge">
+              <div className="relative">
+                <div className={styles.countBadge}>
                   {getPlayerMatchLists(game).find(
                     (ml) => ml.playerId === playerId
                   )?.totalMatches || 0}
                 </div>
-                <img src={player.avatarUrl} />
-                <div className="score-badge">
+                <img className={styles.avatar} src={player.avatarUrl} />
+                <div className={styles.scoreBadge}>
                   {getPlayerMatchLists(game).find(
                     (ml) => ml.playerId === playerId
                   )?.totalMatchValue || 0}
