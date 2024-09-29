@@ -17,7 +17,8 @@ export function createMatrix(config: MatrixConfig) {
         list.push({
           rank: `Item-${acc.length + i + 1}`,
           score: Number(score),
-          show: "",
+          guessed: "",
+          matched: "",
         })
       }
       return [...acc, ...list]

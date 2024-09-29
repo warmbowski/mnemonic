@@ -8,7 +8,8 @@ export interface Item {
   id: string
   rank: string
   score: number
-  show: PlayerId
+  guessed: PlayerId
+  matched: PlayerId
 }
 
 export interface Turn {
@@ -77,7 +78,7 @@ Rune.initLogic({
             lastTurn.guess[0]?.id === item.id ||
             lastTurn.guess[1]?.id === item.id
           ) {
-            item.show = ""
+            item.guessed = ""
           }
         })
       }

@@ -14,25 +14,32 @@ export const tile = style({
   alignItems: "center",
   position: "relative",
   selectors: {
-    '&[data-guesser^="player"]': {
+    '&[data-guessed^="player"]': {
       borderWidth: "4px",
       pointerEvents: "none",
     },
-    '&[data-guesser="player0"]': {
+    '&[data-matched^="player"]': {
+      pointerEvents: "none",
+    },
+    '&[data-guessed="player0"]': {
+      // backgroundColor: vars.colors.player0.med,
+      borderColor: vars.colors.player0.lite,
+      // color: vars.colors.player0.text,
+    },
+    '&[data-guessed="player1"]': {
+      // backgroundColor: vars.colors.player1.med,
+      borderColor: vars.colors.player1.lite,
+      // color: vars.colors.player1.text,
+    },
+    '&[data-matched="player0"]': {
       backgroundColor: vars.colors.player0.med,
-      borderColor: vars.colors.player0.dark,
+      borderColor: vars.colors.player0.lite,
       color: vars.colors.player0.text,
     },
-    '&[data-guesser="player1"]': {
+    '&[data-matched="player1"]': {
       backgroundColor: vars.colors.player1.med,
-      borderColor: vars.colors.player1.dark,
+      borderColor: vars.colors.player1.lite,
       color: vars.colors.player1.text,
     },
   },
-})
-
-export const match = style({
-  // replace iwth lower opacity when match logic
-  // is in place
-  opacity: 1,
 })

@@ -6,6 +6,7 @@ import { PlayerList } from "./player-list"
 import { Board } from "./board"
 
 import selectSoundAudio from "../assets/select.wav"
+import { REVERT_REVEALED_TILES_DELAY } from "../constants"
 const selectSound = new Audio(selectSoundAudio)
 
 export function App() {
@@ -25,7 +26,7 @@ export function App() {
               Rune.actions.revertUnmatchedItems(
                 game.turnHistory[game.turnHistory.length - 1]
               )
-            }, 3000)
+            }, REVERT_REVEALED_TILES_DELAY * 1000)
           }
         }
       },

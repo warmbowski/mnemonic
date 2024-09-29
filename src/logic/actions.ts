@@ -23,10 +23,10 @@ export const revealItem = (
   let [item1, item2] = state.currentTurn.guess
   if (item1 === null) {
     item1 = state.matrix[index]
-    item1.show = state.currentTurn.playerId
+    item1.guessed = state.currentTurn.playerId
   } else if (item2 === null) {
     item2 = state.matrix[index]
-    item2.show = state.currentTurn.playerId
+    item2.guessed = state.currentTurn.playerId
   }
   state.currentTurn.guess = [item1, item2]
 
@@ -76,6 +76,12 @@ function advanceTurn(state: GameState) {
 
   if (hasMatch) {
     startingPlayerId = finishingPlayerId
+    state.matrix = state.matrix.map((item) => {
+      if (item.rank === state.currentTurn?.guess[0]?.rank) {
+        item.matched = finishingPlayerId
+      }
+      return item
+    })
     currentStreak += 1
   } else {
     startingPlayerId =
