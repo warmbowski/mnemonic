@@ -26,7 +26,12 @@ export const playerListItem = style({
   },
 })
 
-export const avatar = style({
+export const playerAvatar = style({
+  position: "relative",
+  cursor: "pointer",
+})
+
+export const avatarImg = style({
   width: "20vw",
   height: "20v2",
   marginTop: "0",

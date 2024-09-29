@@ -4,3 +4,4 @@ import { GameState } from "../logic"
 
 export const yourPlayerIdAtom = atom<PlayerId>("")
 export const gameStateAtom = atom<GameState>()
+export const showPlayerMatchesAtom = atom<PlayerId>("")

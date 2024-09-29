@@ -2,11 +2,12 @@ import { useEffect } from "react"
 import { useAtom } from "jotai"
 
 import { gameStateAtom, yourPlayerIdAtom } from "../game-state"
-import { PlayerList } from "./player-list"
+import { Players } from "./players"
 import { Board } from "./board"
 
 import selectSoundAudio from "../assets/select.wav"
 import { REVERT_REVEALED_TILES_DELAY } from "../constants"
+import { Matches } from "./matches"
 const selectSound = new Audio(selectSoundAudio)
 
 export function App() {
@@ -40,8 +41,9 @@ export function App() {
 
   return (
     <>
-      <PlayerList />
+      <Players />
       <Board />
+      <Matches />
     </>
   )
 }

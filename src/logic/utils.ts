@@ -1,3 +1,4 @@
+import { PlayerId } from "rune-sdk"
 import { GameState, Item } from "../logic"
 
 interface MatrixConfig {
@@ -51,7 +52,11 @@ export function shuffleMatrix<T>(list: T[]) {
 }
 
 // utility functions
-export function getPlayerIndex(state: GameState, playerId: string) {
+export function getPlayerIndex(state: GameState | null, playerId: string) {
+  if (!state) {
+    return -1
+  }
+
   return state.playerIds.findIndex((id) => id === playerId)
 }
 
@@ -59,7 +64,11 @@ export function getCurrentPlayerId(state: GameState) {
   return state.currentTurn?.playerId || ""
 }
 
-export function getPlayerMatchLists(state: GameState) {
+export function getPlayerMatchLists(state?: GameState) {
+  if (!state) {
+    return []
+  }
+
   return state.playerIds.map((playerId) => {
     const matches = state.turnHistory.filter(
       (turn) => turn.playerId === playerId && turn.isMatch
@@ -74,4 +83,26 @@ export function getPlayerMatchLists(state: GameState) {
       ),
     }
   })
+}
+
+export function getPlayerMatchesById(state?: GameState) {
+  if (!state) {
+    return {}
+  }
+
+  const init = state.playerIds.reduce<Record<PlayerId, Item[]>>((acc, pId) => {
+    acc[pId] = []
+    return acc
+  }, {})
+
+  return state.turnHistory.reduce((acc, turn) => {
+    if (turn.isMatch) {
+      if (!acc[turn.playerId]) {
+        acc[turn.playerId] = []
+      }
+
+      acc[turn.playerId].push(turn.guess[0] as Item)
+    }
+    return acc
+  }, init)
 }

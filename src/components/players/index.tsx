@@ -1,11 +1,16 @@
 import { useAtom } from "jotai"
 import { getCurrentPlayerId, getPlayerMatchLists } from "../../logic/utils"
 import * as styles from "./styles.css"
-import { gameStateAtom, yourPlayerIdAtom } from "../../game-state"
+import {
+  gameStateAtom,
+  showPlayerMatchesAtom,
+  yourPlayerIdAtom,
+} from "../../game-state"
 
-export function PlayerList() {
+export function Players() {
   const [game] = useAtom(gameStateAtom)
   const [yourPlayerId] = useAtom(yourPlayerIdAtom)
+  const [, setShowPlayerMatches] = useAtom(showPlayerMatchesAtom)
 
   if (!game) {
     return
@@ -26,13 +31,18 @@ export function PlayerList() {
                 !game.gameOverResults
             )}
           >
-            <div className="relative">
+            <div
+              className={styles.playerAvatar}
+              onClick={() => {
+                setShowPlayerMatches((p) => (p ? "" : playerId))
+              }}
+            >
               <div className={styles.countBadge}>
                 {getPlayerMatchLists(game).find(
                   (ml) => ml.playerId === playerId
                 )?.totalMatches || 0}
               </div>
-              <img className={styles.avatar} src={player.avatarUrl} />
+              <img className={styles.avatarImg} src={player.avatarUrl} />
               <div className={styles.scoreBadge}>
                 {getPlayerMatchLists(game).find(
                   (ml) => ml.playerId === playerId
