@@ -8,6 +8,7 @@ globalStyle("html, body", {
   background: vars.colors.darkText,
   color: vars.colors.liteText,
   minHeight: "100vh",
+  overflow: "hidden",
 })
 
 globalStyle("*", {

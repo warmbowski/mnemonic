@@ -4,7 +4,6 @@ export const board = style({
   width: "100vw",
   height: "100vw",
   padding: "16px",
-  maxWidth: "min(90vh, 600px)",
   pointerEvents: "none",
   display: "grid",
   gridTemplateColumns: "repeat(6, 1fr)",
