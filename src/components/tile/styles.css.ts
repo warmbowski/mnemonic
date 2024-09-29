@@ -7,7 +7,7 @@ export const tile = style({
   fontSize: "min(1rem, 3vw)",
   background: vars.colors.board.background,
   border: "1px solid white",
-  borderRadius: "5px",
+  borderRadius: "4px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",

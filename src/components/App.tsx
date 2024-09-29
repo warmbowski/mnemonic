@@ -39,8 +39,8 @@ export function App() {
 
   return (
     <>
-      <Board />
       <PlayerList />
+      <Board />
     </>
   )
 }

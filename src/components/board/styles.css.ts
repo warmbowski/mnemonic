@@ -1,14 +1,14 @@
 import { style } from "@vanilla-extract/css"
 
 export const board = style({
-  width: "90vw",
-  height: "90vw",
+  width: "100vw",
+  height: "100vw",
   padding: "16px",
   maxWidth: "min(90vh, 600px)",
   pointerEvents: "none",
   display: "grid",
   gridTemplateColumns: "repeat(6, 1fr)",
-  gridTemplateRows: "repeat(6, 1fr)",
+  gridAutoRows: "1fr",
   gap: "8px",
 })
 

@@ -3,7 +3,6 @@ import { vars } from "../../theme.css"
 
 export const playerList = style({
   listStyle: "none",
-  maxHeight: "10vh",
   fontSize: "min(14px, 3vw)",
   padding: "0",
   fontWeight: "bold",
@@ -41,7 +40,7 @@ export const scoreBadge = style({
   color: vars.colors.darkText,
   background: "lightcoral",
   border: "1px solid darkmagenta",
-  borderRadius: "5px",
+  borderRadius: "4px",
   position: "relative",
 })
 

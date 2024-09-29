@@ -27,6 +27,7 @@ export function Board() {
         <Tile
           key={item.id}
           tile={item}
+          delayIn={index * 0.05}
           onClick={() => {
             if (navigator.vibrate) navigator.vibrate(100)
             Rune.actions.revealItem(index)
