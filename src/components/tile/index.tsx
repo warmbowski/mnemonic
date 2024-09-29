@@ -4,7 +4,7 @@ import { useAtom } from "jotai"
 import { gameStateAtom } from "../../game-state"
 import * as styles from "./styles.css"
 import { motion } from "framer-motion"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { MATCH_SCORE_ANIMATION_DURATION } from "../../constants"
 
 export interface TileProps {
@@ -17,12 +17,6 @@ export function Tile({ tile, onClick, delayIn }: TileProps) {
   const [game] = useAtom(gameStateAtom)
   const [completed, setCompleted] = useState(false)
   const tileRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (tile.id === "0") {
-      console.log(tileRef.current?.clientHeight)
-    }
-  }, [tile.id])
 
   if (!game) {
     return
