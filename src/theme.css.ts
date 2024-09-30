@@ -46,6 +46,7 @@ export const vars = createGlobalTheme(":root", {
     darkText: "#333",
   },
   font: {
-    family: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+    family:
+      'fibberish, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";',
   },
 })

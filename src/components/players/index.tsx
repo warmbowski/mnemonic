@@ -1,11 +1,13 @@
 import { useAtom } from "jotai"
 import { getCurrentPlayerId, getPlayerMatchLists } from "../../logic/utils"
-import * as styles from "./styles.css"
 import {
   gameStateAtom,
   showPlayerMatchesAtom,
   yourPlayerIdAtom,
 } from "../../game-state"
+import { Pixelify } from "../pixelify"
+
+import * as styles from "./styles.css"
 
 export function Players() {
   const [game] = useAtom(gameStateAtom)
@@ -42,7 +44,11 @@ export function Players() {
                   (ml) => ml.playerId === playerId
                 )?.totalMatches || 0}
               </div>
-              <img className={styles.avatarImg} src={player.avatarUrl} />
+              <Pixelify
+                src={player.avatarUrl}
+                className={styles.avatarImg}
+                pixelSize={6}
+              />
               <div className={styles.scoreBadge}>
                 {getPlayerMatchLists(game).find(
                   (ml) => ml.playerId === playerId

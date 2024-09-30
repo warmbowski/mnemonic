@@ -1,5 +1,10 @@
-import { globalStyle } from "@vanilla-extract/css"
+import { globalStyle, globalFontFace } from "@vanilla-extract/css"
 import { vars } from "./theme.css"
+
+globalFontFace("fibberish", {
+  src: 'url("./assets/fonts/Fibberish/fibberish.ttf") format("truetype")',
+  fontWeight: "normal",
+})
 
 globalStyle("html, body", {
   padding: 0,

@@ -8,6 +8,7 @@ import { Board } from "./board"
 import selectSoundAudio from "../assets/select.wav"
 import { REVERT_REVEALED_TILES_DELAY } from "../constants"
 import { Matches } from "./matches"
+import { Leaves } from "./leaves"
 const selectSound = new Audio(selectSoundAudio)
 
 export function App() {
@@ -42,7 +43,9 @@ export function App() {
   return (
     <>
       <Players />
-      <Board />
+      <Leaves>
+        <Board />
+      </Leaves>
       <Matches />
     </>
   )
