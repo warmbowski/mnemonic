@@ -58,8 +58,8 @@ export function Matches() {
           <>
             <p style={{ textAlign: "center" }}>
               {showMatches === yourPlayerId
-                ? `You have found ${playerMatches.length} mushrooms in ${turnCount} guesses:`
-                : `${player.displayName} has found ${playerMatches.length} mushrooms in ${turnCount} guesses:`}
+                ? `You have found ${playerMatches.length} mushrooms in ${turnCount} tries:`
+                : `${player.displayName} has found ${playerMatches.length} mushrooms in ${turnCount} tries:`}
             </p>
             <ul className={styles.pairList}>
               {playerMatches.map((match, index) => (
@@ -83,8 +83,8 @@ export function Matches() {
         ) : (
           <p style={{ textAlign: "center" }}>
             {showMatches === yourPlayerId
-              ? "You haven't found any mushrooms yet!"
-              : `${player.displayName} hasn't found any mushrooms yet!`}
+              ? `You haven't found any mushrooms yet (${turnCount} tries)!`
+              : `${player.displayName} hasn't found any mushrooms yet (${turnCount} tries)!`}
           </p>
         )}
       </div>
