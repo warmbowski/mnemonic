@@ -8,9 +8,9 @@ import {
   yourPlayerIdAtom,
 } from "../../game-state"
 import { Pixelify } from "../pixelify"
+import { MUSHROOM_HUNTER_THEME } from "../../constants"
 
 import * as styles from "./styles.css"
-import { MUSHROOM_HUNTER_THEME } from "../../constants"
 
 export function Players() {
   const [game] = useAtom(gameStateAtom)
@@ -58,7 +58,7 @@ export function Players() {
               <Pixelify
                 src={player.avatarUrl}
                 className={styles.avatarImg}
-                pixelSize={5}
+                pixelSize={8}
               />
             </motion.div>
             <div
@@ -70,8 +70,12 @@ export function Players() {
                 { player3: index === 3 }
               )}
             >
-              {getPlayerMatchLists(game).find((ml) => ml.playerId === playerId)
-                ?.totalMatchValue || 0}
+              <span>$</span>
+              <span>
+                {getPlayerMatchLists(game).find(
+                  (ml) => ml.playerId === playerId
+                )?.totalMatchValue || 0}
+              </span>
             </div>
             <div>
               {player.displayName}

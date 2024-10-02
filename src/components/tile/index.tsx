@@ -109,7 +109,7 @@ export function Tile({ tile, onClick, delayIn }: TileProps) {
               }}
               onAnimationComplete={() => setCompleted(true)}
             >
-              {tile.score > 0 ? `+${tile.score}` : tile.score}
+              {tile.score < 0 ? "-" : "+"}${Math.abs(tile.score)}
             </motion.span>
           )}
         </>

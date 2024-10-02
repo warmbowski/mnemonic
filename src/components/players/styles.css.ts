@@ -39,6 +39,9 @@ export const youIcon = style({
 })
 
 export const scoreBadge = style({
+  display: "flex",
+  justifyContent: "space-between",
+  padding: "0 2px",
   width: "100%",
   marginBottom: "2px",
   fontSize: "1.2em",
