@@ -24,6 +24,9 @@ export function Matches() {
     return
   }
 
+  const turnCount = game.turnHistory.filter(
+    (turn) => turn.playerId === yourPlayerId
+  ).length
   const playerIndex = getPlayerIndex(game, showMatches || yourPlayerId)
 
   return (
@@ -55,8 +58,8 @@ export function Matches() {
           <>
             <p style={{ textAlign: "center" }}>
               {showMatches === yourPlayerId
-                ? "You've found these mushrooms:"
-                : `${player.displayName} has found these mushrooms:`}
+                ? `You have found ${playerMatches.length} mushrooms in ${turnCount} guesses:`
+                : `${player.displayName} has found ${playerMatches.length} mushrooms in ${turnCount} guesses:`}
             </p>
             <ul className={styles.pairList}>
               {playerMatches.map((match, index) => (
