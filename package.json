@@ -11,16 +11,18 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "canvas-confetti": "^1.9.3",
     "clsx": "^2.1.1",
     "framer-motion": "^11.5.6",
     "jotai": "^2.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rune-sdk": "^4.22.0"
+    "rune-sdk": "^4.23.4"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
     "@eslint/js": "^9.7.0",
+    "@types/canvas-confetti": "^1.6.4",
     "@types/node": "^22.5.5",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
