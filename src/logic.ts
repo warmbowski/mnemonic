@@ -27,7 +27,7 @@ export interface Turn {
 
 export interface GameState {
   matrix: Item[]
-  playerIds: [PlayerId, PlayerId]
+  playerIds: PlayerId[]
   currentTurn?: Turn
   turnHistory: Turn[]
   gameOverResults?: Record<PlayerId, GameResult>
@@ -42,7 +42,7 @@ declare global {
 }
 
 Rune.initLogic({
-  minPlayers: 2,
+  minPlayers: 1,
   maxPlayers: 2,
   setup: (allPlayerIds) => {
     const matrixConfig = {
@@ -60,7 +60,7 @@ Rune.initLogic({
 
     return {
       matrix: shuffledMatrix,
-      playerIds: [allPlayerIds[0], allPlayerIds[1]],
+      playerIds: allPlayerIds,
       currentTurn: {
         playerId: allPlayerIds[0],
         guess: [null, null],

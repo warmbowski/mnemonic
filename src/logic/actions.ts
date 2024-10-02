@@ -84,8 +84,12 @@ function advanceTurn(state: GameState) {
     })
     currentStreak += 1
   } else {
-    startingPlayerId =
-      state.playerIds[getPlayerIndex(state, finishingPlayerId) === 0 ? 1 : 0]
+    if (state.playerIds.length === 1) {
+      startingPlayerId = finishingPlayerId
+    } else {
+      startingPlayerId =
+        state.playerIds[getPlayerIndex(state, finishingPlayerId) === 0 ? 1 : 0]
+    }
     currentStreak = 0
   }
 

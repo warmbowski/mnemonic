@@ -55,7 +55,6 @@ export function shuffleMatrix<T>(list: T[]) {
     newList[randomIndex] = tempValue
     currIndex -= 1
   }
-  console.log(newList)
   return newList
 }
 
