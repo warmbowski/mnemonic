@@ -10,7 +10,7 @@ globalStyle("html, body", {
   padding: 0,
   margin: 0,
   fontFamily: vars.font.family,
-  background: vars.colors.darkText,
+  background: vars.colors.background,
   color: vars.colors.liteText,
   minHeight: "100vh",
   overflow: "hidden",
