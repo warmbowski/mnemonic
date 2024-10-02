@@ -11,6 +11,8 @@ export const MUSHROOM_HUNTER_THEME: {
   mushrooms: string[]
   trees: string[]
   ground: string
+  youIcon: string
+  scoreIcon: string
 } = {
   mushrooms: [
     "/themes/mushroom-hunter/mushrooms/Icon1.png",
@@ -70,4 +72,6 @@ export const MUSHROOM_HUNTER_THEME: {
     "/themes/mushroom-hunter/trees/Tree2.png",
   ],
   ground: "/themes/mushroom-hunter/forest-floor.png",
+  youIcon: "/themes/mushroom-hunter/star.png",
+  scoreIcon: "/themes/mushroom-hunter/star.png",
 }
