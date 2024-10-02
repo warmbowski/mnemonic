@@ -1,4 +1,5 @@
 import { useAtom } from "jotai"
+import clsx from "clsx"
 import { getCurrentPlayerId, getPlayerMatchLists } from "../../logic/utils"
 import {
   gameStateAtom,
@@ -47,9 +48,17 @@ export function Players() {
               <Pixelify
                 src={player.avatarUrl}
                 className={styles.avatarImg}
-                pixelSize={6}
+                pixelSize={5}
               />
-              <div className={styles.scoreBadge}>
+              <div
+                className={clsx(
+                  styles.scoreBadge,
+                  { player0: index === 0 },
+                  { player1: index === 1 },
+                  { player2: index === 2 },
+                  { player3: index === 3 }
+                )}
+              >
                 {getPlayerMatchLists(game).find(
                   (ml) => ml.playerId === playerId
                 )?.totalMatchValue || 0}

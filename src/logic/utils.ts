@@ -1,35 +1,43 @@
 import { PlayerId } from "rune-sdk"
 import { GameState, Item } from "../logic"
+import { MUSHROOM_HUNTER_THEME } from "../constants"
 
 interface MatrixConfig {
-  [-30]: number
+  [-20]: number
   [10]: number
   [15]: number
   [20]: number
   [25]: number
+  [30]: number
+  [35]: number
+  [40]: number
 }
 
 // initialize game functions
 export function createMatrix(config: MatrixConfig) {
-  const uniqueItems = Object.entries(config).reduce<Omit<Item, "id">[]>(
-    (acc, [score, count]) => {
-      const list = []
-      for (let i = 0; i < count; i++) {
-        list.push({
-          rank: `Item-${acc.length + i + 1}`,
-          score: Number(score),
-          guessed: "",
-          matched: "",
-        })
-      }
-      return [...acc, ...list]
-    },
-    []
-  )
+  const uniqueItems = Object.entries(config).reduce<
+    Omit<Item, "id" | "index">[]
+  >((acc, [score, count]) => {
+    const list = []
+    for (let i = 0; i < count; i++) {
+      list.push({
+        rank: acc.length + i,
+        color: `color${i}` as Item["color"],
+        score: Number(score),
+        guessed: "",
+        matched: "",
+      })
+    }
+    return [...acc, ...list]
+  }, [])
 
   return uniqueItems.concat(uniqueItems).map((item, index) => ({
     id: `${index}`,
+    index,
     ...item,
+    offsetY: `${Math.floor(Math.random() * 25) * (Math.random() < 0.5 ? -1 : 1)}%`,
+    offsetX: `${Math.floor(Math.random() * 35) * (Math.random() < 0.5 ? -1 : 1)}%`,
+    coverIndex: Math.floor(Math.random() * MUSHROOM_HUNTER_THEME.trees.length),
   }))
 }
 
@@ -47,7 +55,7 @@ export function shuffleMatrix<T>(list: T[]) {
     newList[randomIndex] = tempValue
     currIndex -= 1
   }
-
+  console.log(newList)
   return newList
 }
 

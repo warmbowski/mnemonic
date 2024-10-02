@@ -6,8 +6,13 @@ export type GameResult = "WON" | "LOST" | "TIE"
 
 export interface Item {
   id: string
-  rank: string
+  index: number
+  rank: number
+  color: "color0" | "color1" | "color2" | "color3"
   score: number
+  offsetX?: string
+  offsetY?: string
+  coverIndex?: number
   guessed: PlayerId
   matched: PlayerId
 }
@@ -41,11 +46,14 @@ Rune.initLogic({
   maxPlayers: 2,
   setup: (allPlayerIds) => {
     const matrixConfig = {
-      [-30]: 2,
+      [-20]: 2,
       [10]: 4,
       [15]: 4,
       [20]: 4,
       [25]: 4,
+      [30]: 4,
+      [35]: 2,
+      [40]: 2,
     }
     const newMatrix = createMatrix(matrixConfig)
     const shuffledMatrix = shuffleMatrix(newMatrix)

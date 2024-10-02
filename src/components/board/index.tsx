@@ -4,6 +4,7 @@ import { useAtom } from "jotai"
 import { gameStateAtom, yourPlayerIdAtom } from "../../game-state"
 import * as styles from "./styles.css"
 import { Tile } from "../tile"
+import { MUSHROOM_HUNTER_THEME } from "../../constants"
 
 export function Board() {
   const [game] = useAtom(gameStateAtom)
@@ -21,6 +22,10 @@ export function Board() {
           ? styles.yourTurn
           : styles.notYourTurn
       )}
+      style={{
+        backgroundImage: `url(${MUSHROOM_HUNTER_THEME.ground})`,
+        backgroundSize: "50%",
+      }}
       data-your-turn={game.currentTurn?.playerId === yourPlayerId}
     >
       {game.matrix.map((item, index) => (

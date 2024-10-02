@@ -5,9 +5,6 @@ export const tile = style({
   width: "100%",
   height: "100%",
   fontSize: "min(1rem, 3vw)",
-  background: vars.colors.board.background,
-  border: "1px solid white",
-  borderRadius: "4px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -17,29 +14,47 @@ export const tile = style({
     '&[data-guessed^="player"]': {
       borderWidth: "4px",
       pointerEvents: "none",
+      zIndex: 10,
     },
     '&[data-matched^="player"]': {
       pointerEvents: "none",
     },
-    '&[data-guessed="player0"]': {
-      // backgroundColor: vars.colors.player0.med,
-      borderColor: vars.colors.player0.lite,
-      // color: vars.colors.player0.text,
-    },
-    '&[data-guessed="player1"]': {
-      // backgroundColor: vars.colors.player1.med,
-      borderColor: vars.colors.player1.lite,
-      // color: vars.colors.player1.text,
-    },
+    // '&[data-guessed="player0"]': {
+    //   borderColor: vars.colors.player0.lite,
+    // },
+    // '&[data-guessed="player1"]': {
+    //   borderColor: vars.colors.player1.lite,
+    // },
     '&[data-matched="player0"]': {
-      backgroundColor: vars.colors.player0.med,
-      borderColor: vars.colors.player0.lite,
-      color: vars.colors.player0.text,
+      color: vars.colors.player0.dark,
     },
     '&[data-matched="player1"]': {
-      backgroundColor: vars.colors.player1.med,
-      borderColor: vars.colors.player1.lite,
-      color: vars.colors.player1.text,
+      color: vars.colors.player1.dark,
+    },
+  },
+})
+
+export const score = style({
+  zIndex: 100,
+  position: "absolute",
+  lineHeight: 1,
+  // backgroundColor: "rgba(255, 255, 255, 0.7)",
+  // boxShadow:
+  //   "-2px 0 0 0 rgba(255, 255, 255, 0.7), 2px 0 0 0 rgba(255, 255, 255, 0.7), 0 -2px 0 0 rgba(255, 255, 255, 0.7), 0 2px 0 0 rgba(255, 255, 255, 0.7)",
+})
+
+export const cover = style({
+  width: "100%",
+  height: "100%",
+  backgroundPosition: "center",
+  backgroundSize: "contain",
+  backgroundRepeat: "no-repeat",
+  position: "absolute",
+  opacity: 1,
+  transition: "opacity 0.5s",
+  selectors: {
+    "&.guessed": {
+      opacity: 0.5,
     },
   },
 })

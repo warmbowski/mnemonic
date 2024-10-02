@@ -32,31 +32,38 @@ export const playerAvatar = style({
 })
 
 export const avatarImg = style({
-  width: "20vw",
-  height: "20v2",
+  width: "15vw",
   marginTop: "0",
   marginBottom: "0",
 })
 
 export const scoreBadge = style({
-  fontSize: "min(14px, 3vw)",
-  lineHeight: 1.5,
-  minWidth: "1.5em",
+  fontSize: "1.2em",
+  lineHeight: 1.2,
+  minWidth: "1.2em",
   color: vars.colors.darkText,
-  background: "lightcoral",
-  border: "1px solid darkmagenta",
-  borderRadius: "4px",
+  background: vars.colors.liteText,
+  boxShadow:
+    "-4px 0 0 0 darkmagenta, 4px 0 0 0 darkmagenta, 0 -4px 0 0 darkmagenta, 0 4px 0 0 darkmagenta",
   position: "relative",
+  selectors: {
+    "&.player0": {
+      background: vars.colors.player0.lite,
+      boxShadow: `-4px 0 0 0 ${vars.colors.player0.dark}, 4px 0 0 0 ${vars.colors.player0.dark}, 0 -4px 0 0 ${vars.colors.player0.dark}, 0 4px 0 0 ${vars.colors.player0.dark}`,
+    },
+  },
 })
 
 export const countBadge = style([
   scoreBadge,
   {
-    fontSize: "min(12px, 3vw)",
+    fontSize: "1.2em",
+    lineHeight: 1,
+    minWidth: "1.2em",
     color: vars.colors.darkText,
     background: "gold",
-    border: "1px solid goldenrod",
-    borderRadius: "50%",
+    boxShadow:
+      "-1px 0 0 0 gold, 1px 0 0 0 gold, 0 -1px 0 0 gold, 0 1px 0 0 gold",
     position: "absolute",
     top: "5%",
     right: "5%",

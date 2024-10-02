@@ -1,14 +1,17 @@
 import { style } from "@vanilla-extract/css"
+import { vars } from "../../theme.css"
 
 export const board = style({
-  width: "100vw",
-  height: "100vw",
-  padding: "16px",
+  width: "95vw",
+  height: "114vw",
+  padding: "8px",
   pointerEvents: "none",
   display: "grid",
   gridTemplateColumns: "repeat(6, 1fr)",
   gridAutoRows: "1fr",
-  gap: "8px",
+  backgroundColor: vars.colors.board.background,
+  boxShadow:
+    "-6px 0 0 0 #6e2727, 6px 0 0 0 #6e2727, 0 -6px 0 0 #6e2727, 0 6px 0 0 #6e2727",
 })
 
 export const yourTurn = style({
