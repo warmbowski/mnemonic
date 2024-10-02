@@ -1,3 +1,9 @@
+# Unearthed: Mushroom Hunter
+
+A local Mycologist is looking to buy rare mushrooms, but only in pairs. Compete against your friends in collecting the rarest mushrooms so as to earn the largest total for the mushrooms you sell to the Mycologist. You collect them by tapping on the trees to reveal two each turn. If they are a match, you collect the $$$. If they don't match, they hide back in their tree. Watch out for the poison mushrooms! You don't know they are poison until you try to collect.
+
+<img src="screenshot2024-10-01.png" width="500" />
+
 # Mnemonic
 
 An expanded digital version of the basic card matching game Concentration. This is a multiplayer online version built for the Rune social gaming platform.
