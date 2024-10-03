@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css"
+import { style, keyframes } from "@vanilla-extract/css"
 import { vars } from "../../theme.css"
 
 export const tile = style({
@@ -19,12 +19,6 @@ export const tile = style({
     '&[data-matched^="player"]': {
       pointerEvents: "none",
     },
-    // '&[data-guessed="player0"]': {
-    //   borderColor: vars.colors.player0.lite,
-    // },
-    // '&[data-guessed="player1"]': {
-    //   borderColor: vars.colors.player1.lite,
-    // },
     '&[data-matched="player0"]': {
       color: vars.colors.player0.dark,
     },
@@ -32,15 +26,6 @@ export const tile = style({
       color: vars.colors.player1.dark,
     },
   },
-})
-
-export const score = style({
-  zIndex: 100,
-  position: "absolute",
-  lineHeight: 1,
-  // backgroundColor: "rgba(255, 255, 255, 0.7)",
-  // boxShadow:
-  //   "-2px 0 0 0 rgba(255, 255, 255, 0.7), 2px 0 0 0 rgba(255, 255, 255, 0.7), 0 -2px 0 0 rgba(255, 255, 255, 0.7), 0 2px 0 0 rgba(255, 255, 255, 0.7)",
 })
 
 export const cover = style({
@@ -57,4 +42,34 @@ export const cover = style({
       opacity: 0.5,
     },
   },
+})
+
+export const score = style({
+  zIndex: 100,
+  position: "absolute",
+  lineHeight: 1,
+  color: "black",
+})
+export const scoreValue = style({
+  position: "absolute",
+  bottom: "6px",
+  zIndex: 20,
+})
+
+export const scoreIconAnimation = keyframes({
+  "100%": {
+    backgroundPositionX: -160,
+  },
+})
+
+export const scoreIcon = style({
+  width: "32px",
+  height: "32px",
+  scale: "50%",
+  position: "relative",
+  top: "calc(25% - 1em)",
+  backgroundPosition: "0 0",
+  backgroundRepeat: "no-repeat",
+  zIndex: 10,
+  animation: scoreIconAnimation + " 0.8s steps(5) 3",
 })

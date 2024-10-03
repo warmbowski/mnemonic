@@ -1,4 +1,4 @@
-export const MATCH_SCORE_ANIMATION_DURATION = 2
+export const MATCH_SCORE_ANIMATION_DURATION = 1
 export const REVERT_REVEALED_TILES_DELAY = 3
 
 export const MUSHROOM_HUNTER_THEME: {
@@ -73,5 +73,5 @@ export const MUSHROOM_HUNTER_THEME: {
   ],
   ground: "/themes/mushroom-hunter/forest-floor.png",
   youIcon: "/themes/mushroom-hunter/star.png",
-  scoreIcon: "/themes/mushroom-hunter/star.png",
+  scoreIcon: "/themes/mushroom-hunter/Gold32x32_Noutline.png",
 }

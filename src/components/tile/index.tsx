@@ -90,7 +90,7 @@ export function Tile({ tile, onClick, delayIn }: TileProps) {
             }}
           />
           {tile.matched && (
-            <motion.span
+            <motion.div
               className={styles.score}
               style={{
                 display: completed ? "none" : "block",
@@ -105,12 +105,20 @@ export function Tile({ tile, onClick, delayIn }: TileProps) {
               }}
               transition={{
                 duration: MATCH_SCORE_ANIMATION_DURATION,
-                ease: "backOut",
+                ease: "linear",
               }}
               onAnimationComplete={() => setCompleted(true)}
             >
-              {tile.score < 0 ? "-" : "+"}${Math.abs(tile.score)}
-            </motion.span>
+              <div
+                className={styles.scoreIcon}
+                style={{
+                  backgroundImage: `url("${MUSHROOM_HUNTER_THEME.scoreIcon}")`,
+                }}
+              />
+              <div className={styles.scoreValue}>
+                {tile.score < 0 ? "-" : "+"}${Math.abs(tile.score)}
+              </div>
+            </motion.div>
           )}
         </>
       ) : (
