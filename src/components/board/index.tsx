@@ -79,7 +79,7 @@ interface GrassTuftProps {
 function GrassTuft({ top, left, scale }: GrassTuftProps) {
   return (
     <img
-      src="themes/mushroom-hunter/grass-tuftsw.png"
+      src="themes/mushroom-hunter/grass-tufts.png"
       style={{
         position: "absolute",
         top,
@@ -88,6 +88,7 @@ function GrassTuft({ top, left, scale }: GrassTuftProps) {
       }}
       onError={(e) => {
         e.currentTarget.src = ""
+        e.currentTarget.remove()
       }}
       alt=""
     />

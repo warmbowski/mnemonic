@@ -122,5 +122,4 @@ function gameOver(state: GameState) {
       playerStats.totalMatchValue === maxScore ? winResult : loseResult
     return acc
   }, {})
-  console.log("Game Over?", state.gameOverResults)
 }
