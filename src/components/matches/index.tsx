@@ -1,6 +1,8 @@
 import { useEffect, useMemo } from "react"
 import { motion } from "framer-motion"
 import { useAtom } from "jotai"
+import { Player } from "rune-sdk"
+
 import {
   gameStateAtom,
   showPlayerMatchesAtom,
@@ -15,10 +17,25 @@ export function Matches() {
   const [showMatches, setShowMatches] = useAtom(showPlayerMatchesAtom)
   const [game] = useAtom(gameStateAtom)
   const [yourPlayerId] = useAtom(yourPlayerIdAtom)
-  const player = Rune.getPlayerInfo(showMatches || yourPlayerId)
+
+  const isSpectator = useMemo(() => yourPlayerId === "", [yourPlayerId])
+  const player = useMemo(
+    () =>
+      Rune.getPlayerInfo(showMatches || yourPlayerId) ||
+      ({ displayName: "Spectator" } as Player),
+    [showMatches, yourPlayerId]
+  )
   const playerMatches = useMemo(() => {
     return getPlayerMatchesById(game)[showMatches || yourPlayerId] || []
   }, [game, showMatches, yourPlayerId])
+  const turnCount = useMemo(
+    () =>
+      game?.turnHistory.filter(
+        (turn) =>
+          turn.playerId === showMatches || turn.playerId === yourPlayerId
+      ).length || 0,
+    [game?.turnHistory, showMatches, yourPlayerId]
+  )
 
   useEffect(() => {
     if (game?.gameOverResults) {
@@ -30,16 +47,16 @@ export function Matches() {
     return
   }
 
-  const turnCount = game.turnHistory.filter(
-    (turn) => turn.playerId === yourPlayerId
-  ).length
   const playerIndex = getPlayerIndex(game, showMatches || yourPlayerId)
+  const initial = {
+    top: isSpectator ? "110vh" : "calc(100vh - 84px)",
+  }
 
   return (
     <motion.div
       className={clsx(styles.matchList, `player${playerIndex}`)}
-      initial={{ top: "calc(100vh - 84px)" }}
-      animate={{ top: showMatches ? "30vh" : "calc(100vh - 84px)" }}
+      initial={initial}
+      animate={{ top: showMatches ? "30vh" : initial.top }}
     >
       <div
         className={styles.heading}
@@ -47,7 +64,7 @@ export function Matches() {
       >
         <h2>{`${player.displayName}'s basket`}</h2>
         <div>
-          <div>{playerMatches.length} set found</div>
+          <div>{playerMatches.length} sets found</div>
           <div>in {turnCount} tries</div>
         </div>
         <div className={showMatches ? styles.carrotDown : styles.carrotUp}>

@@ -9,6 +9,8 @@ export const matchList = style({
   color: "#000",
   padding: "8px 16px",
   transition: "bottom 0.2s ease-in-out",
+  background: vars.colors.player0.lite,
+  boxShadow: `-6px 0 0 0 ${vars.colors.player0.dark}, 6px 0 0 0 ${vars.colors.player0.dark}, 0 -6px 0 0 ${vars.colors.player0.dark}, 0 6px 0 0 ${vars.colors.player0.dark}`,
   selectors: {
     "&.player0": {
       background: vars.colors.player0.lite,
