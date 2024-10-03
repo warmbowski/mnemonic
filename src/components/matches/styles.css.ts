@@ -35,7 +35,7 @@ export const matchList = style({
 
 export const pairList = style({
   display: "flex",
-  justifyContent: "flex-start",
+  justifyContent: "center",
   flexWrap: "wrap",
   alignItems: "center",
   padding: "4px",

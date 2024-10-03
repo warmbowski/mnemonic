@@ -62,7 +62,7 @@ function checkForMatch(state: GameState) {
     (acc, player) => acc + player.totalMatches,
     0
   )
-  if (totalMatches === state.matrix.length) {
+  if (totalMatches === state.matrix.length / 2) {
     gameOver(state)
   }
 }
@@ -122,4 +122,5 @@ function gameOver(state: GameState) {
       playerStats.totalMatchValue === maxScore ? winResult : loseResult
     return acc
   }, {})
+  console.log("Game Over?", state.gameOverResults)
 }

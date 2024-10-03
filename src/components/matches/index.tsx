@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import { useEffect, useMemo } from "react"
 import { motion } from "framer-motion"
 import { useAtom } from "jotai"
 import {
@@ -19,6 +19,12 @@ export function Matches() {
   const playerMatches = useMemo(() => {
     return getPlayerMatchesById(game)[showMatches] || []
   }, [game, showMatches])
+
+  useEffect(() => {
+    if (game?.gameOverResults) {
+      setShowMatches(yourPlayerId)
+    }
+  }, [game?.gameOverResults, setShowMatches, yourPlayerId])
 
   if (!game) {
     return
@@ -53,6 +59,15 @@ export function Matches() {
           X
         </h2>
       </div>
+      {game.gameOverResults && (
+        <p style={{ textAlign: "center", fontSize: "1.5em" }}>
+          {game.gameOverResults[showMatches] === "WON"
+            ? "You won the game!"
+            : game.gameOverResults[showMatches] === "LOST"
+              ? `${player.displayName} won the game!`
+              : "It's a tie!"}
+        </p>
+      )}
       <div>
         {playerMatches.length > 0 ? (
           <>
