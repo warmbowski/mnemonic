@@ -5,13 +5,9 @@ export const matchList = style({
   width: "calc(100vw - 12px)",
   height: "70vh",
   position: "absolute",
-  top: "90vh",
   zIndex: 100,
   color: "#000",
-  padding: "16px",
-  display: "flex",
-  flexDirection: "column",
-  gap: "8px",
+  padding: "8px 16px",
   transition: "bottom 0.2s ease-in-out",
   selectors: {
     "&.player0": {
@@ -31,6 +27,30 @@ export const matchList = style({
       boxShadow: `-6px 0 0 0 ${vars.colors.player3.dark}, 6px 0 0 0 ${vars.colors.player3.dark}, 0 -4px 0 0 ${vars.colors.player3.dark}, 0 4px 0 0 ${vars.colors.player3.dark}`,
     },
   },
+})
+
+export const carrotUp = style({
+  fontSize: "40px",
+  height: 24,
+  position: "absolute",
+  top: "4px",
+  right: "50%",
+  transition: "transform 0.2s ease-in-out",
+})
+
+export const carrotDown = style([
+  carrotUp,
+  {
+    transform: "rotate(180deg)",
+  },
+])
+
+export const heading = style({
+  display: "flex",
+  cursor: "pointer",
+  justifyContent: "space-between",
+  alignItems: "center",
+  gap: "8px",
 })
 
 export const pairList = style({

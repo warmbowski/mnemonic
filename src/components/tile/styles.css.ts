@@ -44,6 +44,15 @@ export const cover = style({
   },
 })
 
+export const item = style({
+  width: "70%",
+  height: "70%",
+  transformOrigin: "50% 100%",
+  backgroundSize: "cover",
+  backgroundPosition: "50% 20%",
+  backgroundRepeat: "no-repeat",
+})
+
 export const score = style({
   zIndex: 100,
   position: "absolute",

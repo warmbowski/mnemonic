@@ -1,15 +1,16 @@
+import { useMemo, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { useAtom } from "jotai"
+import clsx from "clsx"
+
 import { getPlayerIndex } from "../../logic/utils"
 import { Item } from "../../logic"
-import { useAtom } from "jotai"
 import { gameStateAtom } from "../../game-state"
 import * as styles from "./styles.css"
-import { motion } from "framer-motion"
-import { useMemo, useRef, useState } from "react"
 import {
   MATCH_SCORE_ANIMATION_DURATION,
   MUSHROOM_HUNTER_THEME,
 } from "../../constants"
-import clsx from "clsx"
 
 export interface TileProps {
   tile: Item
@@ -71,15 +72,10 @@ export function Tile({ tile, onClick, delayIn }: TileProps) {
       {tile.guessed ? (
         <>
           <motion.div
+            className={styles.item}
             initial={{
-              width: "50%",
-              height: "50%",
-              transformOrigin: "50% 100%",
               transform: "rotateX(90deg)",
               backgroundImage: `url("${MUSHROOM_HUNTER_THEME.mushrooms[tile.rank]}")`,
-              backgroundSize: "cover",
-              backgroundPosition: "50% 20%",
-              backgroundRepeat: "no-repeat",
             }}
             animate={{ transform: "rotateX(0deg)" }}
             transition={{

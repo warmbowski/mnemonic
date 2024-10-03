@@ -9,11 +9,14 @@ import selectSoundAudio from "../assets/select.wav"
 import { REVERT_REVEALED_TILES_DELAY } from "../constants"
 import { Matches } from "./matches"
 import { Leaves } from "./leaves"
+import { usePreloadAssets } from "./preload-theme"
 const selectSound = new Audio(selectSoundAudio)
 
 export function App() {
   const [game, setGame] = useAtom(gameStateAtom)
   const [, setYourPlayerId] = useAtom(yourPlayerIdAtom)
+
+  usePreloadAssets()
 
   useEffect(() => {
     Rune.initClient({

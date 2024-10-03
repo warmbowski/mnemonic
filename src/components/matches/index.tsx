@@ -17,8 +17,8 @@ export function Matches() {
   const [yourPlayerId] = useAtom(yourPlayerIdAtom)
   const player = Rune.getPlayerInfo(showMatches || yourPlayerId)
   const playerMatches = useMemo(() => {
-    return getPlayerMatchesById(game)[showMatches] || []
-  }, [game, showMatches])
+    return getPlayerMatchesById(game)[showMatches || yourPlayerId] || []
+  }, [game, showMatches, yourPlayerId])
 
   useEffect(() => {
     if (game?.gameOverResults) {
@@ -38,27 +38,31 @@ export function Matches() {
   return (
     <motion.div
       className={clsx(styles.matchList, `player${playerIndex}`)}
-      initial={{ top: "90vh" }}
-      animate={{ top: showMatches ? "30vh" : "90vh" }}
+      initial={{ top: "calc(100vh - 84px)" }}
+      animate={{ top: showMatches ? "30vh" : "calc(100vh - 84px)" }}
     >
       <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
+        className={styles.heading}
         onClick={() => setShowMatches(showMatches ? "" : yourPlayerId)}
       >
         <h2>{`${player.displayName}'s basket`}</h2>
-        <h2
-          style={{
-            cursor: "pointer",
-            width: "1em",
-            height: "2em",
-          }}
-        >
-          X
-        </h2>
+        <div>
+          <div>{playerMatches.length} set found</div>
+          <div>in {turnCount} tries</div>
+        </div>
+        <div className={showMatches ? styles.carrotDown : styles.carrotUp}>
+          ^
+        </div>
       </div>
+      <p style={{ textAlign: "center" }}>
+        {showMatches === yourPlayerId
+          ? playerMatches.length > 0
+            ? `You have found ${playerMatches.length} mushroom sets.`
+            : `You haven't found any mushroom sets yet!`
+          : playerMatches.length > 0
+            ? `${player.displayName} has found ${playerMatches.length} mushroom sets.`
+            : `${player.displayName} hasn't found any mushroom sets yet!`}
+      </p>
       {game.gameOverResults && (
         <p style={{ textAlign: "center", fontSize: "1.5em" }}>
           {game.gameOverResults[showMatches] === "WON"
@@ -69,13 +73,8 @@ export function Matches() {
         </p>
       )}
       <div>
-        {playerMatches.length > 0 ? (
+        {playerMatches.length > 0 && (
           <>
-            <p style={{ textAlign: "center" }}>
-              {showMatches === yourPlayerId
-                ? `You have found ${playerMatches.length} mushrooms in ${turnCount} tries:`
-                : `${player.displayName} has found ${playerMatches.length} mushrooms in ${turnCount} tries:`}
-            </p>
             <ul className={styles.pairList}>
               {playerMatches.map((match, index) => (
                 <li key={index} className={styles.pairItem}>
@@ -95,12 +94,6 @@ export function Matches() {
               ))}
             </ul>
           </>
-        ) : (
-          <p style={{ textAlign: "center" }}>
-            {showMatches === yourPlayerId
-              ? `You haven't found any mushrooms yet (${turnCount} tries)!`
-              : `${player.displayName} hasn't found any mushrooms yet (${turnCount} tries)!`}
-          </p>
         )}
       </div>
     </motion.div>

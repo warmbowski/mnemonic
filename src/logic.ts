@@ -31,6 +31,7 @@ export interface GameState {
   currentTurn?: Turn
   turnHistory: Turn[]
   gameOverResults?: Record<PlayerId, GameResult>
+  theme?: string
 }
 type GameActions = {
   revealItem: (cardIndex: number) => void
