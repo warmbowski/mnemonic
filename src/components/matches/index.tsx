@@ -5,6 +5,7 @@ import { Player } from "rune-sdk"
 
 import {
   gameStateAtom,
+  messagesAtom,
   showPlayerMatchesAtom,
   yourPlayerIdAtom,
 } from "../../game-state"
@@ -33,13 +34,14 @@ export function Matches() {
   const [showMatches, setShowMatches] = useAtom(showPlayerMatchesAtom)
   const [game] = useAtom(gameStateAtom)
   const [yourPlayerId] = useAtom(yourPlayerIdAtom)
+  const [t] = useAtom(messagesAtom)
 
   const isSpectator = useMemo(() => yourPlayerId === "", [yourPlayerId])
   const player = useMemo(
     () =>
       Rune.getPlayerInfo(showMatches || yourPlayerId) ||
-      ({ displayName: "Spectator" } as Player),
-    [showMatches, yourPlayerId]
+      ({ displayName: t.spectatorName() } as Player),
+    [showMatches, t, yourPlayerId]
   )
   const playerMatches = useMemo(() => {
     return getPlayerMatchesById(game)[showMatches || yourPlayerId] || []
@@ -78,10 +80,10 @@ export function Matches() {
         className={styles.heading}
         onClick={() => setShowMatches(showMatches ? "" : yourPlayerId)}
       >
-        <h2>{`${player.displayName}'s basket`}</h2>
+        <h2>{t.playersBasket(player.displayName)}</h2>
         <div>
-          <div>{playerMatches.length} sets found</div>
-          <div>in {turnCount} tries</div>
+          <div>{t.setsFound(playerMatches.length)}</div>
+          <div>{t.inTries(turnCount)}</div>
         </div>
         <div className={showMatches ? styles.carrotDown : styles.carrotUp}>
           ^
@@ -90,19 +92,19 @@ export function Matches() {
       <p style={{ textAlign: "center" }}>
         {showMatches === yourPlayerId
           ? playerMatches.length > 0
-            ? `You have found ${playerMatches.length} mushroom sets.`
-            : `You haven't found any mushroom sets yet!`
+            ? t.matchesYou(playerMatches.length)
+            : t.noMatchesYou()
           : playerMatches.length > 0
-            ? `${player.displayName} has found ${playerMatches.length} mushroom sets.`
-            : `${player.displayName} hasn't found any mushroom sets yet!`}
+            ? t.matchesThem(player.displayName, playerMatches.length)
+            : t.noMatchesThem(player.displayName)}
       </p>
       {game.gameOverResults && (
         <p style={{ textAlign: "center", fontSize: "1.5em" }}>
           {game.gameOverResults[showMatches] === "WON"
-            ? "You won the game!"
+            ? t.won()
             : game.gameOverResults[showMatches] === "LOST"
-              ? `${player.displayName} won the game!`
-              : "It's a tie!"}
+              ? t.lost(player.displayName)
+              : t.tie()}
         </p>
       )}
       <div className={styles.matchesContainer}>
@@ -120,9 +122,7 @@ export function Matches() {
                     src={MUSHROOM_HUNTER_THEME.mushrooms[match.rank]}
                     alt={`Mushroom ${match.rank}`}
                   />
-                  <span>
-                    Value: {match.score < 0 ? "-" : "+"}${Math.abs(match.score)}
-                  </span>
+                  <span>{t.value(match.score)}</span>
                 </li>
               ))}
             </ul>

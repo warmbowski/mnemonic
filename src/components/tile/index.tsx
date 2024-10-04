@@ -5,7 +5,7 @@ import clsx from "clsx"
 
 import { getPlayerIndex } from "../../logic/utils"
 import { Item } from "../../logic"
-import { gameStateAtom } from "../../game-state"
+import { gameStateAtom, messagesAtom } from "../../game-state"
 import * as styles from "./styles.css"
 import {
   MATCH_SCORE_ANIMATION_DURATION,
@@ -20,6 +20,7 @@ export interface TileProps {
 
 export function Tile({ tile, onClick, delayIn }: TileProps) {
   const [game] = useAtom(gameStateAtom)
+  const [t] = useAtom(messagesAtom)
   const [completed, setCompleted] = useState(false)
   const tileRef = useRef<HTMLDivElement>(null)
 
@@ -124,7 +125,7 @@ export function Tile({ tile, onClick, delayIn }: TileProps) {
                 className={styles.scoreValue}
                 style={{ color: tile.score < 0 ? "#a884f3" : "#f9c22b" }}
               >
-                {tile.score < 0 ? "-" : "+"}${Math.abs(tile.score)}
+                {t.score(tile.score)}
               </div>
             </motion.div>
           )}

@@ -2,7 +2,7 @@ import clsx from "clsx"
 import { motion } from "framer-motion"
 import { useAtom } from "jotai"
 
-import { gameStateAtom, yourPlayerIdAtom } from "../../game-state"
+import { gameStateAtom, messagesAtom, yourPlayerIdAtom } from "../../game-state"
 import * as styles from "./styles.css"
 import { Tile } from "../tile"
 
@@ -16,6 +16,7 @@ const grassData = [...Array(100).keys()].map((k) => ({
 export function Board() {
   const [game] = useAtom(gameStateAtom)
   const [yourPlayerId] = useAtom(yourPlayerIdAtom)
+  const [t] = useAtom(messagesAtom)
 
   if (!game) {
     return
@@ -64,7 +65,7 @@ export function Board() {
             width: "100%",
           }}
         >
-          Your Turn!!
+          {t.yourTurn()}
         </motion.h3>
       )}
     </>

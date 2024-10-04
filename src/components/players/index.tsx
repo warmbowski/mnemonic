@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { getCurrentPlayerId, getPlayerMatchLists } from "../../logic/utils"
 import {
   gameStateAtom,
+  messagesAtom,
   showPlayerMatchesAtom,
   yourPlayerIdAtom,
 } from "../../game-state"
@@ -16,6 +17,7 @@ export function Players() {
   const [game] = useAtom(gameStateAtom)
   const [yourPlayerId] = useAtom(yourPlayerIdAtom)
   const [, setShowPlayerMatches] = useAtom(showPlayerMatchesAtom)
+  const [t] = useAtom(messagesAtom)
 
   if (!game) {
     return
@@ -70,7 +72,7 @@ export function Players() {
                 { player3: index === 3 }
               )}
             >
-              <span>$</span>
+              <span>{t.$()}</span>
               <span>
                 {getPlayerMatchLists(game).find(
                   (ml) => ml.playerId === playerId
