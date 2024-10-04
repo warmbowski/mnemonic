@@ -39,7 +39,7 @@ export const cover = style({
   transition: "opacity 0.5s",
   selectors: {
     "&.guessed": {
-      opacity: 0.5,
+      opacity: 0.3,
     },
   },
 })

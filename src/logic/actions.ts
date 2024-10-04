@@ -73,6 +73,7 @@ function advanceTurn(state: GameState) {
   let startingPlayerId = ""
   let currentStreak = state.currentTurn?.streak || 0
   const hasMatch = state.currentTurn?.isMatch
+  const isNegativeScore = (state.currentTurn?.matchValue ?? 0) < 0
 
   if (hasMatch) {
     startingPlayerId = finishingPlayerId
@@ -82,6 +83,11 @@ function advanceTurn(state: GameState) {
       }
       return item
     })
+    if (isNegativeScore) {
+      startingPlayerId =
+        state.playerIds[getPlayerIndex(state, finishingPlayerId) === 0 ? 1 : 0]
+      currentStreak = 0
+    }
     currentStreak += 1
   } else {
     if (state.playerIds.length === 1) {
