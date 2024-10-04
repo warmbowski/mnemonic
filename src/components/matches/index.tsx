@@ -13,6 +13,22 @@ import { getPlayerIndex, getPlayerMatchesById } from "../../logic/utils"
 import clsx from "clsx"
 import { MUSHROOM_HUNTER_THEME } from "../../constants"
 
+const getClosedDrawerOffset = () => {
+  const h = window.innerHeight
+  const w = window.innerWidth
+  const playersHeight = 90
+  const boardHeight = w * 1.2
+  const messageHeight = 70
+  const maxCloseddrawerHeight = 84
+  const minCloseddrawerHeight = 24
+
+  const calc = h - playersHeight - boardHeight - messageHeight
+  if (calc < maxCloseddrawerHeight) {
+    return minCloseddrawerHeight
+  }
+  return maxCloseddrawerHeight
+}
+
 export function Matches() {
   const [showMatches, setShowMatches] = useAtom(showPlayerMatchesAtom)
   const [game] = useAtom(gameStateAtom)
@@ -49,7 +65,7 @@ export function Matches() {
 
   const playerIndex = getPlayerIndex(game, showMatches || yourPlayerId)
   const initial = {
-    top: isSpectator ? "110vh" : "calc(100vh - 84px)",
+    top: isSpectator ? "110vh" : `calc(100vh - ${getClosedDrawerOffset()}px)`,
   }
 
   return (
@@ -89,7 +105,7 @@ export function Matches() {
               : "It's a tie!"}
         </p>
       )}
-      <div>
+      <div className={styles.matchesContainer}>
         {playerMatches.length > 0 && (
           <>
             <ul className={styles.pairList}>

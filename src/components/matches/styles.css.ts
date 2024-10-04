@@ -31,6 +31,12 @@ export const matchList = style({
   },
 })
 
+export const matchesContainer = style({
+  height: "50vh",
+  paddingBottom: 16,
+  overflowY: "scroll",
+})
+
 export const carrotUp = style({
   fontSize: "40px",
   height: 24,
