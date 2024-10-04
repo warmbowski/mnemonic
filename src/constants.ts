@@ -77,6 +77,8 @@ const pl = (n: number, singular: string, plural: string) =>
 
 export type Translations = typeof MESSAGES_EN
 export const MESSAGES_EN = {
+  gameName: () => "Unearthed",
+  gameTitle: () => "Mushroom Hunter",
   // Matches component
   spectatorName: () => "Spectator",
   playersBasket: (name: string) => `${name}'s basket`,
