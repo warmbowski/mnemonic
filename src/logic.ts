@@ -59,11 +59,13 @@ Rune.initLogic({
     const newMatrix = createMatrix(matrixConfig)
     const shuffledMatrix = shuffleMatrix(newMatrix)
 
+    const startIndex = Math.floor(Math.random() * allPlayerIds.length)
+
     return {
       matrix: shuffledMatrix,
       playerIds: allPlayerIds,
       currentTurn: {
-        playerId: allPlayerIds[0],
+        playerId: allPlayerIds[startIndex],
         guess: [null, null],
         streak: 0,
       },

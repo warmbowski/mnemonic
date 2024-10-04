@@ -1,7 +1,11 @@
 import { useEffect } from "react"
 import { useAtom } from "jotai"
 
-import { gameStateAtom, yourPlayerIdAtom } from "../game-state"
+import {
+  gameStateAtom,
+  yourPlayerIdAtom,
+  showPlayerMatchesAtom,
+} from "../game-state"
 import { Players } from "./players"
 import { Board } from "./board"
 
@@ -15,8 +19,15 @@ const selectSound = new Audio(selectSoundAudio)
 export function App() {
   const [game, setGame] = useAtom(gameStateAtom)
   const [, setYourPlayerId] = useAtom(yourPlayerIdAtom)
+  const [showMatches, setShowMatches] = useAtom(showPlayerMatchesAtom)
 
   usePreloadAssets()
+
+  useEffect(() => {
+    if (showMatches !== "" && !game?.playerIds.includes(showMatches)) {
+      setShowMatches("")
+    }
+  }, [game?.playerIds, setShowMatches, showMatches])
 
   useEffect(() => {
     Rune.initClient({
