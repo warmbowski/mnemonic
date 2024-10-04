@@ -44,7 +44,7 @@ declare global {
 
 Rune.initLogic({
   minPlayers: 1,
-  maxPlayers: 2,
+  maxPlayers: 4,
   setup: (allPlayerIds) => {
     const matrixConfig = {
       [-20]: 2,

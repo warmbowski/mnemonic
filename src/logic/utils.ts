@@ -71,6 +71,12 @@ export function getCurrentPlayerId(state: GameState) {
   return state.currentTurn?.playerId || ""
 }
 
+export function getNextPlayerId(state: GameState) {
+  const currentPlayerIndex = getPlayerIndex(state, getCurrentPlayerId(state))
+  const nextPlayerIndex = (currentPlayerIndex + 1) % state.playerIds.length
+  return state.playerIds[nextPlayerIndex]
+}
+
 export function getPlayerMatchLists(state?: GameState) {
   if (!state) {
     return []

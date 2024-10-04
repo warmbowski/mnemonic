@@ -2,7 +2,7 @@ import { PlayerId } from "rune-sdk"
 import { GameResult, GameState } from "../logic"
 import {
   getCurrentPlayerId,
-  getPlayerIndex,
+  getNextPlayerId,
   getPlayerMatchLists,
 } from "./utils"
 
@@ -84,8 +84,7 @@ function advanceTurn(state: GameState) {
       return item
     })
     if (isNegativeScore) {
-      startingPlayerId =
-        state.playerIds[getPlayerIndex(state, finishingPlayerId) === 0 ? 1 : 0]
+      startingPlayerId = getNextPlayerId(state)
       currentStreak = 0
     }
     currentStreak += 1
@@ -93,8 +92,7 @@ function advanceTurn(state: GameState) {
     if (state.playerIds.length === 1) {
       startingPlayerId = finishingPlayerId
     } else {
-      startingPlayerId =
-        state.playerIds[getPlayerIndex(state, finishingPlayerId) === 0 ? 1 : 0]
+      startingPlayerId = getNextPlayerId(state)
     }
     currentStreak = 0
   }
