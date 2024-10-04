@@ -59,9 +59,11 @@ export const score = style({
   lineHeight: 1,
   color: "black",
 })
+
 export const scoreValue = style({
   position: "absolute",
-  bottom: "6px",
+  bottom: "0px",
+  textShadow: "black 1px 1px, black -1px -1px, black 1px -1px, black -1px 1px",
   zIndex: 20,
 })
 
@@ -71,7 +73,7 @@ export const scoreIconAnimation = keyframes({
   },
 })
 
-export const scoreIcon = style({
+export const scoring = style({
   width: "32px",
   height: "32px",
   scale: "50%",
@@ -80,5 +82,20 @@ export const scoreIcon = style({
   backgroundPosition: "0 0",
   backgroundRepeat: "no-repeat",
   zIndex: 10,
-  animation: scoreIconAnimation + " 0.8s steps(5) 3",
 })
+
+export const scoreIcon = style([
+  scoring,
+  {
+    scale: "50%",
+    animation: scoreIconAnimation + " 0.8s steps(5) 3",
+  },
+])
+
+export const negScoreIcon = style([
+  scoring,
+  {
+    scale: "80%",
+    animation: scoreIconAnimation + " 0.5s steps(5) 3",
+  },
+])

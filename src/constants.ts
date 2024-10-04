@@ -7,6 +7,7 @@ export const MUSHROOM_HUNTER_THEME: {
   ground: string
   youIcon: string
   scoreIcon: string
+  negScoreIcon: string
 } = {
   mushrooms: [
     "themes/mushroom-hunter/mushrooms/Icon1.png",
@@ -67,5 +68,6 @@ export const MUSHROOM_HUNTER_THEME: {
   ],
   ground: "themes/mushroom-hunter/forest-floor.png",
   youIcon: "themes/mushroom-hunter/star.png",
-  scoreIcon: "themes/mushroom-hunter/Gold32x32_Noutline.png",
+  scoreIcon: "themes/mushroom-hunter/coin.png",
+  negScoreIcon: "themes/mushroom-hunter/spores.png",
 }

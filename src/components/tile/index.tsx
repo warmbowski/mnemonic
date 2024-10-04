@@ -105,25 +105,32 @@ export function Tile({ tile, onClick, delayIn }: TileProps) {
               }}
               onAnimationComplete={() => setCompleted(true)}
             >
+              {tile.score < 0 ? (
+                <div
+                  className={styles.negScoreIcon}
+                  style={{
+                    backgroundImage: `url("${MUSHROOM_HUNTER_THEME.negScoreIcon}")`,
+                  }}
+                />
+              ) : (
+                <div
+                  className={styles.scoreIcon}
+                  style={{
+                    backgroundImage: `url("${MUSHROOM_HUNTER_THEME.scoreIcon}")`,
+                  }}
+                />
+              )}
               <div
-                className={styles.scoreIcon}
-                style={{
-                  backgroundImage: `url("${MUSHROOM_HUNTER_THEME.scoreIcon}")`,
-                }}
-              />
-              <div className={styles.scoreValue}>
+                className={styles.scoreValue}
+                style={{ color: tile.score < 0 ? "#a884f3" : "#f9c22b" }}
+              >
                 {tile.score < 0 ? "-" : "+"}${Math.abs(tile.score)}
               </div>
             </motion.div>
           )}
         </>
       ) : (
-        <div
-        // className={styles.cover}
-        // style={{
-        //   backgroundImage: coverUrl,
-        // }}
-        />
+        <div />
       )}
     </motion.div>
   )
