@@ -1,10 +1,11 @@
-import { useEffect } from "react"
+import { useEffect, useLayoutEffect } from "react"
 import { useAtom } from "jotai"
 
 import {
   gameStateAtom,
   yourPlayerIdAtom,
   showPlayerMatchesAtom,
+  messagesAtom,
 } from "../game-state"
 import { Players } from "./players"
 import { Board } from "./board"
@@ -20,8 +21,20 @@ export function App() {
   const [game, setGame] = useAtom(gameStateAtom)
   const [, setYourPlayerId] = useAtom(yourPlayerIdAtom)
   const [showMatches, setShowMatches] = useAtom(showPlayerMatchesAtom)
+  const [, setT] = useAtom(messagesAtom)
 
   usePreloadAssets()
+
+  useLayoutEffect(() => {
+    const retreiveAndSetMessages = async (lang: "es") => {
+      const { default: messages } = await import(`../i18n/${lang}.ts`)
+      return setT(messages)
+    }
+
+    if (navigator.language.startsWith("es")) {
+      retreiveAndSetMessages("es")
+    }
+  }, [setT])
 
   useEffect(() => {
     if (showMatches !== "" && !game?.playerIds.includes(showMatches)) {

@@ -79,6 +79,8 @@ Rune.initLogic({
       if (game.gameOverResults) {
         Rune.gameOver({
           players: game.gameOverResults,
+          // delayPopUp: true, // to be used with Rune.showGameOverPopUp()
+          minimizePopUp: true,
         })
       }
     },

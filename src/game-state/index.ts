@@ -1,7 +1,7 @@
 import { atom } from "jotai"
 import { PlayerId } from "rune-sdk"
 import { GameState } from "../logic"
-import { MESSAGES_EN, Translations } from "../constants"
+import MESSAGES_EN, { Translations } from "../i18n/en"
 
 export const yourPlayerIdAtom = atom<PlayerId>("")
 export const gameStateAtom = atom<GameState>()
