@@ -37,6 +37,15 @@ export function Matches() {
   const [t] = useAtom(messagesAtom)
 
   const isSpectator = useMemo(() => yourPlayerId === "", [yourPlayerId])
+  const gameWinnerId = useMemo(() => {
+    if (game?.gameOverResults) {
+      const winner = Object.entries(game.gameOverResults).find(
+        (p) => p[1] === "WON"
+      )
+      return winner?.[0]
+    }
+    return undefined
+  }, [game?.gameOverResults])
   const player = useMemo(
     () =>
       Rune.getPlayerInfo(showMatches || yourPlayerId) ||
@@ -94,6 +103,17 @@ export function Matches() {
           <div>{t.inTries(turnCount)}</div>
         </div>
       </div>
+      {game.gameOverResults && (
+        <p style={{ textAlign: "center", fontSize: "1.5em" }}>
+          {game.gameOverResults[showMatches] === "WON"
+            ? t.won()
+            : game.gameOverResults[showMatches] === "LOST"
+              ? t.lost(
+                  Rune.getPlayerInfo(gameWinnerId || "")?.displayName || ""
+                )
+              : t.tie()}
+        </p>
+      )}
       <p style={{ textAlign: "center" }}>
         {showMatches === yourPlayerId
           ? playerMatches.length > 0
@@ -103,15 +123,6 @@ export function Matches() {
             ? t.matchesThem(player.displayName, playerMatches.length)
             : t.noMatchesThem(player.displayName)}
       </p>
-      {game.gameOverResults && (
-        <p style={{ textAlign: "center", fontSize: "1.5em" }}>
-          {game.gameOverResults[showMatches] === "WON"
-            ? t.won()
-            : game.gameOverResults[showMatches] === "LOST"
-              ? t.lost(player.displayName)
-              : t.tie()}
-        </p>
-      )}
       <div className={styles.matchesContainer}>
         {playerMatches.length > 0 && (
           <>
