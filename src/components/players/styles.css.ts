@@ -3,7 +3,7 @@ import { vars } from "../../theme.css"
 
 export const playerList = style({
   listStyle: "none",
-  fontSize: "min(14px, 3vw)",
+  fontSize: "1em",
   padding: "0",
   fontWeight: "bold",
   display: "flex",

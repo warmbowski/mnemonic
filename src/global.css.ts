@@ -9,6 +9,7 @@ globalFontFace("fibberish", {
 globalStyle("html, body", {
   padding: 0,
   margin: 0,
+  fontSize: 14,
   fontFamily: vars.font.family,
   background: vars.colors.background,
   color: vars.colors.liteText,
@@ -30,4 +31,12 @@ globalStyle("#root", {
 
 globalStyle(".relative", {
   position: "relative",
+})
+
+globalStyle("html, body", {
+  "@media": {
+    "screen and (min-width: 512px)": {
+      fontSize: 16,
+    },
+  },
 })

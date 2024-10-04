@@ -4,7 +4,7 @@ import { vars } from "../../theme.css"
 export const tile = style({
   width: "100%",
   height: "100%",
-  fontSize: "min(1rem, 3vw)",
+  fontSize: "1em",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",

@@ -38,27 +38,36 @@ export const matchesContainer = style({
 })
 
 export const carrotUp = style({
+  width: "calc(100% - 16px)",
   fontSize: "40px",
-  height: 24,
+  height: 20,
+  cursor: "pointer",
   position: "absolute",
-  top: "4px",
-  right: "50%",
+  textAlign: "center",
   transition: "transform 0.2s ease-in-out",
 })
 
 export const carrotDown = style([
   carrotUp,
   {
-    transform: "rotate(180deg)",
+    transform: "rotate(180deg) translateY(50%)",
   },
 ])
 
 export const heading = style({
-  display: "flex",
+  fontSize: "1em",
+  height: 84,
+  marginTop: 20,
   cursor: "pointer",
+  display: "flex",
   justifyContent: "space-between",
-  alignItems: "center",
+  alignItems: "flex-start",
   gap: "8px",
+})
+
+export const playerName = style({
+  fontSize: "1.5em",
+  fontWeight: "bold",
 })
 
 export const pairList = style({

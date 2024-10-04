@@ -77,16 +77,21 @@ export function Matches() {
       animate={{ top: showMatches ? "30vh" : initial.top }}
     >
       <div
+        className={showMatches ? styles.carrotDown : styles.carrotUp}
+        onClick={() => setShowMatches(showMatches ? "" : yourPlayerId)}
+      >
+        ^
+      </div>
+      <div
         className={styles.heading}
         onClick={() => setShowMatches(showMatches ? "" : yourPlayerId)}
       >
-        <h2>{t.playersBasket(player.displayName)}</h2>
+        <div className={styles.playerName}>
+          {t.playersBasket(player.displayName)}
+        </div>
         <div>
           <div>{t.setsFound(playerMatches.length)}</div>
           <div>{t.inTries(turnCount)}</div>
-        </div>
-        <div className={showMatches ? styles.carrotDown : styles.carrotUp}>
-          ^
         </div>
       </div>
       <p style={{ textAlign: "center" }}>
