@@ -7,6 +7,11 @@ export const background = style({
   height: "114vw",
   padding: "8px",
   backgroundColor: vars.colors.board.background,
+  "@media": {
+    "(min-aspect-ratio: 0.67)": {
+      height: "104vw",
+    },
+  },
 })
 
 export const board = style([
