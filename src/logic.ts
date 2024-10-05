@@ -1,5 +1,5 @@
 import type { PlayerId, RuneClient } from "rune-sdk"
-import { revealItem } from "./logic/actions"
+import { advanceTurn, endGame, revealItem } from "./logic/actions"
 import { createMatrix, shuffleMatrix } from "./logic/utils"
 
 export type GameResult = "WON" | "LOST" | "TIE"
@@ -36,6 +36,8 @@ export interface GameState {
 type GameActions = {
   revealItem: (cardIndex: number) => void
   revertUnmatchedItems: (lastTurn: Turn) => void
+  advanceTurn: () => void
+  endGame: () => void
 }
 
 declare global {
@@ -75,14 +77,6 @@ Rune.initLogic({
   actions: {
     revealItem: (cardIndex, { game, playerId }) => {
       revealItem(game, cardIndex, playerId)
-
-      if (game.gameOverResults) {
-        Rune.gameOver({
-          players: game.gameOverResults,
-          // delayPopUp: true, // to be used with Rune.showGameOverPopUp()
-          minimizePopUp: true,
-        })
-      }
     },
     revertUnmatchedItems: (lastTurn, { game }) => {
       if (!lastTurn.isMatch) {
@@ -93,6 +87,20 @@ Rune.initLogic({
           ) {
             item.guessed = ""
           }
+        })
+      }
+    },
+    advanceTurn: (_, { game }) => {
+      advanceTurn(game)
+    },
+    endGame: (_, { game }) => {
+      endGame(game)
+
+      if (game.gameOverResults) {
+        Rune.gameOver({
+          players: game.gameOverResults,
+          // delayPopUp: true, // to be used with Rune.showGameOverPopUp()
+          minimizePopUp: true,
         })
       }
     },

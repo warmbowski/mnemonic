@@ -14,6 +14,7 @@ interface Theme {
     negScore: string
     posScore: string
     reveal: string
+    revert: string
     yourTurn: string
   }
 }
@@ -83,9 +84,10 @@ export const MUSHROOM_HUNTER_THEME: Theme = {
     negScoreIcon: "themes/mushroom-hunter/spores.png",
   },
   audio: {
-    negScore: "themes/default-audio/neg-score.wav",
-    posScore: "themes/default-audio/pos-score.wav",
-    reveal: "themes/default-audio/reveal.wav",
-    yourTurn: "themes/default-audio/your-turn.wav",
+    negScore: "default-audio/neg-score.wav",
+    posScore: "default-audio/pos-score.wav",
+    reveal: "default-audio/reveal.wav",
+    revert: "default-audio/revert.wav",
+    yourTurn: "default-audio/your-turn.wav",
   },
 }

@@ -28,7 +28,7 @@ export const usePreloadAssets = () => {
       }
     }
 
-    Object.values(MUSHROOM_HUNTER_THEME.audio).forEach((value) => {
+    Object.values(MUSHROOM_HUNTER_THEME.audio).forEach(([value]) => {
       if (Array.isArray(value)) {
         value.forEach((src) => {
           loadAudio(src)

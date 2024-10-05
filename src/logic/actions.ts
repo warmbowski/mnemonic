@@ -54,20 +54,9 @@ function checkForMatch(state: GameState) {
   } else if (item1 && item2) {
     state.currentTurn.isMatch = false
   }
-
-  advanceTurn(state)
-
-  // check if game is over
-  const totalMatches = getPlayerMatchLists(state).reduce(
-    (acc, player) => acc + player.totalMatches,
-    0
-  )
-  if (totalMatches === state.matrix.length / 2) {
-    gameOver(state)
-  }
 }
 
-function advanceTurn(state: GameState) {
+export function advanceTurn(state: GameState) {
   // advance turn logic here
   const finishingPlayerId = getCurrentPlayerId(state)
   let startingPlayerId = ""
@@ -107,7 +96,7 @@ function advanceTurn(state: GameState) {
   }
 }
 
-function gameOver(state: GameState) {
+export function endGame(state: GameState) {
   // game over logic here
   const sortedPlayerScores = getPlayerMatchLists(state).sort((a, b) =>
     a.totalMatchValue > b.totalMatchValue ? -1 : 1
