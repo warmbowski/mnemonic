@@ -26,7 +26,7 @@ export function Tile({ tile, onClick, delayIn }: TileProps) {
 
   const coverUrl = useMemo(() => {
     return tile.coverIndex !== undefined
-      ? `url(${MUSHROOM_HUNTER_THEME.trees[tile.coverIndex]})`
+      ? `url(${MUSHROOM_HUNTER_THEME.images.trees[tile.coverIndex]})`
       : undefined
   }, [tile.coverIndex])
 
@@ -76,7 +76,7 @@ export function Tile({ tile, onClick, delayIn }: TileProps) {
             className={styles.item}
             initial={{
               transform: "rotateX(90deg)",
-              backgroundImage: `url("${MUSHROOM_HUNTER_THEME.mushrooms[tile.rank]}")`,
+              backgroundImage: `url("${MUSHROOM_HUNTER_THEME.images.mushrooms[tile.rank]}")`,
             }}
             animate={{ transform: "rotateX(0deg)" }}
             transition={{
@@ -110,14 +110,14 @@ export function Tile({ tile, onClick, delayIn }: TileProps) {
                 <div
                   className={styles.negScoreIcon}
                   style={{
-                    backgroundImage: `url("${MUSHROOM_HUNTER_THEME.negScoreIcon}")`,
+                    backgroundImage: `url("${MUSHROOM_HUNTER_THEME.images.negScoreIcon}")`,
                   }}
                 />
               ) : (
                 <div
                   className={styles.scoreIcon}
                   style={{
-                    backgroundImage: `url("${MUSHROOM_HUNTER_THEME.scoreIcon}")`,
+                    backgroundImage: `url("${MUSHROOM_HUNTER_THEME.images.scoreIcon}")`,
                   }}
                 />
               )}

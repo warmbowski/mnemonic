@@ -37,7 +37,9 @@ export function createMatrix(config: MatrixConfig) {
     ...item,
     offsetY: `${Math.floor(Math.random() * 25) * (Math.random() < 0.5 ? -1 : 1)}%`,
     offsetX: `${Math.floor(Math.random() * 35) * (Math.random() < 0.5 ? -1 : 1)}%`,
-    coverIndex: Math.floor(Math.random() * MUSHROOM_HUNTER_THEME.trees.length),
+    coverIndex: Math.floor(
+      Math.random() * MUSHROOM_HUNTER_THEME.images.trees.length
+    ),
   }))
 }
 

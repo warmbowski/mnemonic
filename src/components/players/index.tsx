@@ -83,7 +83,7 @@ export function Players() {
               {player.displayName}
               {player.playerId === yourPlayerId && (
                 <img
-                  src={MUSHROOM_HUNTER_THEME.youIcon}
+                  src={MUSHROOM_HUNTER_THEME.images.youIcon}
                   className={styles.youIcon}
                 />
               )}

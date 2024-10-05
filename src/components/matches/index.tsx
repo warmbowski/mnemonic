@@ -130,12 +130,12 @@ export function Matches() {
               {playerMatches.map((match, index) => (
                 <li key={index} className={styles.pairItem}>
                   <img
-                    src={MUSHROOM_HUNTER_THEME.mushrooms[match.rank]}
+                    src={MUSHROOM_HUNTER_THEME.images.mushrooms[match.rank]}
                     alt={`Mushroom ${match.rank}`}
                   />
                   <img
                     className={styles.secondImage}
-                    src={MUSHROOM_HUNTER_THEME.mushrooms[match.rank]}
+                    src={MUSHROOM_HUNTER_THEME.images.mushrooms[match.rank]}
                     alt={`Mushroom ${match.rank}`}
                   />
                   <span>{t.value(match.score)}</span>
