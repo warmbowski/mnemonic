@@ -78,13 +78,10 @@ Rune.initLogic({
     revealItem: (cardIndex, { game, playerId }) => {
       revealItem(game, cardIndex, playerId)
     },
-    revertUnmatchedItems: (lastTurn, { game }) => {
-      if (!lastTurn.isMatch) {
+    revertUnmatchedItems: (turn, { game }) => {
+      if (!turn.isMatch) {
         game.matrix.forEach((item) => {
-          if (
-            lastTurn.guess[0]?.id === item.id ||
-            lastTurn.guess[1]?.id === item.id
-          ) {
+          if (turn.guess[0]?.id === item.id || turn.guess[1]?.id === item.id) {
             item.guessed = ""
           }
         })

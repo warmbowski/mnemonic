@@ -59,10 +59,12 @@ export function App() {
       // at turn end
       if (game.currentTurn && game.currentTurn.guess[1] !== null) {
         const turn = game.currentTurn
+        if (!turn.isMatch) {
+          setTimeout(() => {
+            Rune.actions.revertUnmatchedItems(turn)
+          }, REVERT_REVEALED_TILES_DELAY * 1000)
+        }
         Rune.actions.advanceTurn()
-        setTimeout(() => {
-          Rune.actions.revertUnmatchedItems(turn)
-        }, REVERT_REVEALED_TILES_DELAY * 1000)
       }
 
       // check if game is over
@@ -86,8 +88,9 @@ export function App() {
           if (game.currentTurn && game.currentTurn.isMatch) {
             if ((game.currentTurn.matchValue ?? 0) < 0) {
               negScoreSound.play()
+            } else {
+              posScoreSound.play()
             }
-            posScoreSound.play()
           } else {
             selectSound.play()
           }
