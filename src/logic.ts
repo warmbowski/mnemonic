@@ -1,4 +1,4 @@
-import type { GameStateWithPersisted, PlayerId, RuneClient } from "rune-sdk"
+import type { RuneClient } from "rune-sdk"
 import {
   advanceTurn,
   computeGameOverResults,
@@ -6,60 +6,7 @@ import {
   revealItem,
 } from "./logic/actions"
 import { createMatrix, shuffleMatrix } from "./logic/utils"
-
-export type GameResult = "WON" | "LOST" | "TIE"
-
-export interface Item {
-  id: string
-  index: number
-  rank: number
-  color: "color0" | "color1" | "color2" | "color3"
-  score: number
-  offsetX?: string
-  offsetY?: string
-  coverIndex?: number
-  guessed: PlayerId
-  matched: PlayerId
-  multiplier: number
-}
-
-export interface Turn {
-  playerId: PlayerId
-  guess: [Item | null, Item | null]
-  streak: number
-  isMatch?: boolean
-  matchValue?: number
-}
-
-export interface GameState {
-  signature: string
-  matrix: Item[]
-  playerIds: PlayerId[]
-  currentTurn?: Turn
-  turnHistory: Turn[]
-  gameOverResults?: Record<PlayerId, GameResult>
-  theme?: string
-  maxStreak: number[]
-}
-
-export interface PersistedDataV1 {
-  version: number
-  onboarded?: boolean
-  personalBests?: {
-    totalGames: number
-    totalMatches: number
-    totalTurns: number
-    totalEarnings: number
-    highestEarnings: number
-    highestStreak: number
-    fewestTurns: number
-  }
-}
-
-export type GameStateWithPersited = GameStateWithPersisted<
-  GameState,
-  PersistedDataV1
->
+import { GameState, PersistedDataV1, Turn } from "./logic/types"
 
 type GameActions = {
   revealItem: (cardIndex: number) => void

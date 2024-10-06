@@ -1,5 +1,11 @@
 import { PlayerId } from "rune-sdk"
-import { GameResult, GameStateWithPersited, PersistedDataV1 } from "../logic"
+import {
+  GameResult,
+  GameStateWithPersited,
+  GameType,
+  PersistedDataV1,
+  PersonalBests,
+} from "../logic/types"
 import {
   getCurrentPlayerId,
   getNextPlayerId,
@@ -141,31 +147,46 @@ export function persistsPersonalBests(
   const thisGameTurns = state.turnHistory.filter(
     (t) => t.playerId === playerId
   ).length
+  const prevVersion = state.persisted?.[playerId].version || 0
+  const gameType = (state.playerIds.length - 1) as GameType
 
-  const version = state.persisted?.[playerId].version || 0
-
-  if (version <= 1) {
-    const bests: PersistedDataV1["personalBests"] = state.persisted?.[playerId]
-      .personalBests || {
-      totalGames: 0,
-      totalMatches: 0,
-      totalTurns: 0,
-      totalEarnings: 0,
-      highestEarnings: 0,
-      highestStreak: 0,
-      fewestTurns: Infinity,
+  // try {
+  if (prevVersion <= 1) {
+    const newData: PersistedDataV1 = {
+      ...state.persisted[playerId],
+      version: 1,
+      personalBests: Array.isArray(state.persisted[playerId].personalBests)
+        ? [...state.persisted[playerId].personalBests]
+        : [],
     }
 
-    state.persisted[playerId].personalBests = {
-      totalGames: bests.totalGames + 1,
-      totalMatches: bests.totalMatches + playerMatchList.totalMatches,
-      totalTurns: bests.totalTurns + thisGameTurns,
-      totalEarnings: bests.totalEarnings + thisGameValue,
-      highestEarnings: Math.max(bests.highestEarnings, thisGameValue),
-      highestStreak: Math.max(bests.highestStreak, thisGameMaxStreak),
-      fewestTurns: Math.min(bests.fewestTurns, thisGameTurns),
+    const newBests: PersonalBests = {
+      totalGames: newData.personalBests[gameType]?.totalGames || 0 + 1,
+      totalMatches:
+        newData.personalBests[gameType]?.totalMatches ||
+        0 + playerMatchList.totalMatches,
+      totalTurns:
+        newData.personalBests[gameType]?.totalTurns || 0 + thisGameTurns,
+      totalEarnings:
+        newData.personalBests[gameType]?.totalEarnings || 0 + thisGameValue,
+      highestEarnings: Math.max(
+        newData.personalBests[gameType]?.highestEarnings || 0,
+        thisGameValue
+      ),
+      highestStreak: Math.max(
+        newData.personalBests[gameType]?.highestStreak || 0,
+        thisGameMaxStreak
+      ),
+      fewestTurns: Math.min(
+        newData.personalBests[gameType]?.fewestTurns || Infinity,
+        thisGameTurns
+      ),
     }
 
-    state.persisted[playerId].version = 1
+    newData.personalBests[gameType] = newBests
+    state.persisted[playerId] = newData
   }
+  // } catch (e) {
+  //   console.error(e)
+  // }
 }

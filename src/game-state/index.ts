@@ -1,6 +1,6 @@
 import { atom } from "jotai"
 import { PlayerId } from "rune-sdk"
-import { GameStateWithPersited } from "../logic"
+import { GameStateWithPersited } from "../logic/types"
 import MESSAGES_EN, { Translations } from "../i18n/en"
 
 export const yourPlayerIdAtom = atom<PlayerId>("")

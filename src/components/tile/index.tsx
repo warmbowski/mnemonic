@@ -4,7 +4,7 @@ import { useAtom } from "jotai"
 import clsx from "clsx"
 
 import { getPlayerIndex } from "../../logic/utils"
-import { Item } from "../../logic"
+import { Item } from "../../logic/types"
 import { gameStateAtom, messagesAtom } from "../../game-state"
 import * as styles from "./styles.css"
 import {

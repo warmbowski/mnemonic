@@ -1,6 +1,7 @@
 import { PlayerId } from "rune-sdk"
-import { GameStateWithPersited, Item } from "../logic"
+import { GameStateWithPersited } from "../logic/types"
 import { MUSHROOM_HUNTER_THEME } from "../constants"
+import { Item } from "./types"
 
 interface MatrixConfig {
   [-20]: number
