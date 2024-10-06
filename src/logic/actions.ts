@@ -48,7 +48,10 @@ function checkForMatch(state: GameState) {
   }
 
   if (item1.rank === item2.rank) {
-    const multiplier = state.currentTurn.streak + 1
+    const isNegativeScore = item1.score < 0
+    const multiplier = isNegativeScore ? 1 : state.currentTurn.streak + 1
+    item1.multiplier = multiplier
+    item2.multiplier = multiplier
     state.currentTurn.isMatch = true
     state.currentTurn.matchValue = item1.score * multiplier
   } else if (item1 && item2) {
@@ -63,20 +66,24 @@ export function advanceTurn(state: GameState) {
   let currentStreak = state.currentTurn?.streak || 0
   const hasMatch = state.currentTurn?.isMatch
   const isNegativeScore = (state.currentTurn?.matchValue ?? 0) < 0
+  const multipier = isNegativeScore ? 1 : currentStreak + 1
 
   if (hasMatch) {
     startingPlayerId = finishingPlayerId
     state.matrix = state.matrix.map((item) => {
       if (item.rank === state.currentTurn?.guess[0]?.rank) {
         item.matched = finishingPlayerId
+        item.multiplier = multipier
       }
       return item
     })
     if (isNegativeScore) {
       startingPlayerId = getNextPlayerId(state)
       currentStreak = 0
+    } else {
+      currentStreak += 1
+      state.maxStreak = Math.max(state.maxStreak, currentStreak)
     }
-    currentStreak += 1
   } else {
     if (state.playerIds.length === 1) {
       startingPlayerId = finishingPlayerId

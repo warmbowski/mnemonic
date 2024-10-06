@@ -123,6 +123,9 @@ export function Matches() {
             ? t.matchesThem(player.displayName, playerMatches.length)
             : t.noMatchesThem(player.displayName)}
       </p>
+      {game.maxStreak > 0 && (
+        <p style={{ textAlign: "center" }}>{t.biggestStreak(game.maxStreak)}</p>
+      )}
       <div className={styles.matchesContainer}>
         {playerMatches.length > 0 && (
           <>
@@ -138,7 +141,28 @@ export function Matches() {
                     src={MUSHROOM_HUNTER_THEME.images.mushrooms[match.rank]}
                     alt={`Mushroom ${match.rank}`}
                   />
-                  <span>{t.value(match.score)}</span>
+                  {(match.score ?? 0) < 0 && (
+                    <>
+                      <div
+                        style={{
+                          backgroundImage: `url("${MUSHROOM_HUNTER_THEME.images.badMatch}")`,
+                          animation:
+                            styles.matchAnimation + " 1s steps(8) infinite",
+                        }}
+                        className={styles.badMatch1}
+                      />
+                      <div
+                        style={{
+                          backgroundImage: `url("${MUSHROOM_HUNTER_THEME.images.badMatch}")`,
+                        }}
+                        className={styles.badMatch2}
+                      />
+                    </>
+                  )}
+                  <div>{t.value(match.score)}</div>
+                  {match.multiplier > 1 && (
+                    <div className={styles.multiplier}>x{match.multiplier}</div>
+                  )}
                 </li>
               ))}
             </ul>

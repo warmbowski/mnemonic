@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css"
+import { style, keyframes } from "@vanilla-extract/css"
 import { vars } from "../../theme.css"
 
 export const matchList = style({
@@ -76,13 +76,12 @@ export const pairList = style({
   flexWrap: "wrap",
   alignItems: "center",
   padding: "4px",
-  selectors: {},
 })
 
 export const pairItem = style({
   margin: "4px",
   padding: "4px",
-  border: `1px solid ${vars.colors.darkText}`,
+  // border: `1px solid ${vars.colors.darkText}`,
   borderRadius: "4px",
   display: "flex",
   flexDirection: "column",
@@ -92,12 +91,54 @@ export const pairItem = style({
   position: "relative",
 })
 
+export const matchAnimation = keyframes({
+  "100%": {
+    backgroundPositionX: -256,
+  },
+})
+
+const badMatch = style({
+  position: "absolute",
+  top: 0,
+  width: 32,
+  height: 32,
+  zIndex: -5,
+  opacity: 0.5,
+  backgroundPosition: "0 0",
+  backgroundRepeat: "no-repeat",
+  backgroundBlendMode: "overlay",
+})
+
+export const badMatch1 = style([
+  badMatch,
+  {
+    animation: `${matchAnimation} 1s steps(8) infinite`,
+  },
+])
+
+export const badMatch2 = style([
+  badMatch,
+  {
+    right: 8,
+    animation: `${matchAnimation} 1s steps(8) infinite`,
+    animationDelay: "0.8s",
+  },
+])
+
 export const image = style({
   position: "relative",
 })
 
 export const secondImage = style({
   position: "absolute",
-  top: "8px",
-  right: "8px",
+  top: 8,
+  right: 8,
+})
+
+export const multiplier = style({
+  position: "absolute",
+  color: "#ea4f36",
+  bottom: "1em",
+  right: 0,
+  zIndex: 20,
 })

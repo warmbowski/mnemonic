@@ -9,6 +9,7 @@ interface Theme {
     youIcon: string
     scoreIcon: string
     negScoreIcon: string
+    badMatch: string
   }
   audio: {
     negScore: string
@@ -82,6 +83,7 @@ export const MUSHROOM_HUNTER_THEME: Theme = {
     youIcon: "themes/mushroom-hunter/star.png",
     scoreIcon: "themes/mushroom-hunter/coin.png",
     negScoreIcon: "themes/mushroom-hunter/spores.png",
+    badMatch: "themes/mushroom-hunter/spores2.png",
   },
   audio: {
     negScore: "default-audio/neg-score.wav",

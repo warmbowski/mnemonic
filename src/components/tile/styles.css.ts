@@ -1,5 +1,5 @@
 import { style, keyframes } from "@vanilla-extract/css"
-import { vars } from "../../theme.css"
+// import { vars } from "../../theme.css"
 
 export const tile = style({
   width: "100%",
@@ -11,20 +11,21 @@ export const tile = style({
   alignItems: "center",
   position: "relative",
   selectors: {
-    '&[data-guessed^="player"]': {
-      borderWidth: "4px",
-      pointerEvents: "none",
-      zIndex: 10,
-    },
-    '&[data-matched^="player"]': {
+    '&[data-guessed^="player"], &[data-matched^="player"]': {
       pointerEvents: "none",
     },
-    '&[data-matched="player0"]': {
-      color: vars.colors.player0.dark,
-    },
-    '&[data-matched="player1"]': {
-      color: vars.colors.player1.dark,
-    },
+    // '&[data-matched="player0"]': {
+    //   color: vars.colors.player0.dark,
+    // },
+    // '&[data-matched="player1"]': {
+    //   color: vars.colors.player1.dark,
+    // },
+    // '&[data-matched="player2"]': {
+    //   color: vars.colors.player2.dark,
+    // },
+    // '&[data-matched="player3"]': {
+    //   color: vars.colors.player3.dark,
+    // },
   },
 })
 
@@ -39,7 +40,8 @@ export const cover = style({
   transition: "opacity 0.5s",
   selectors: {
     "&.guessed": {
-      opacity: 0.3,
+      filter: "blur(1px)",
+      opacity: 0.5,
     },
   },
 })
@@ -74,8 +76,8 @@ export const scoreIconAnimation = keyframes({
 })
 
 export const scoring = style({
-  width: "32px",
-  height: "32px",
+  width: 32,
+  height: 32,
   scale: "50%",
   position: "relative",
   top: "calc(25% - 1em)",
@@ -88,6 +90,7 @@ export const scoreIcon = style([
   scoring,
   {
     scale: "50%",
+    opacity: 0.7,
     animation: scoreIconAnimation + " 0.8s steps(5) 3",
   },
 ])
@@ -96,6 +99,7 @@ export const negScoreIcon = style([
   scoring,
   {
     scale: "80%",
+    opacity: 0.8,
     animation: scoreIconAnimation + " 0.5s steps(5) 3",
   },
 ])

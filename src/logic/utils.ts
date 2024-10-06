@@ -26,6 +26,7 @@ export function createMatrix(config: MatrixConfig) {
         score: Number(score),
         guessed: "",
         matched: "",
+        multiplier: 1,
       })
     }
     return [...acc, ...list]

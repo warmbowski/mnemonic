@@ -65,7 +65,9 @@ export function Board() {
             width: "100%",
           }}
         >
-          {t.yourTurn()}
+          {game.currentTurn.streak > 0
+            ? t.onAStreak(game.currentTurn.streak)
+            : t.yourTurn()}
         </motion.h3>
       )}
     </>

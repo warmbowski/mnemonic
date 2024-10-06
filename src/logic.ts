@@ -15,6 +15,7 @@ export interface Item {
   coverIndex?: number
   guessed: PlayerId
   matched: PlayerId
+  multiplier: number
 }
 
 export interface Turn {
@@ -32,6 +33,7 @@ export interface GameState {
   turnHistory: Turn[]
   gameOverResults?: Record<PlayerId, GameResult>
   theme?: string
+  maxStreak: number
 }
 type GameActions = {
   revealItem: (cardIndex: number) => void
@@ -72,6 +74,7 @@ Rune.initLogic({
         streak: 0,
       },
       turnHistory: [],
+      maxStreak: 0,
     }
   },
   actions: {
