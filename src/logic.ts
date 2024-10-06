@@ -41,7 +41,7 @@ Rune.initLogic({
 
     return {
       // somewhat unique deterministic game signature mainly for
-      // making sure components reset when game restarted
+      // making sure components reset when game is restarted
       signature: shuffledMatrix.map((item) => item.rank).join(""),
       matrix: shuffledMatrix,
       playerIds: allPlayerIds,
