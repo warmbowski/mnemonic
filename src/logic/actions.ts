@@ -3,6 +3,7 @@ import { GameResult, GameState } from "../logic"
 import {
   getCurrentPlayerId,
   getNextPlayerId,
+  getPlayerIndex,
   getPlayerMatchLists,
 } from "./utils"
 
@@ -62,6 +63,7 @@ function checkForMatch(state: GameState) {
 export function advanceTurn(state: GameState) {
   // advance turn logic here
   const finishingPlayerId = getCurrentPlayerId(state)
+  const finishingPlayerIndex = getPlayerIndex(state, finishingPlayerId)
   let startingPlayerId = ""
   let currentStreak = state.currentTurn?.streak || 0
   const hasMatch = state.currentTurn?.isMatch
@@ -82,7 +84,10 @@ export function advanceTurn(state: GameState) {
       currentStreak = 0
     } else {
       currentStreak += 1
-      state.maxStreak = Math.max(state.maxStreak, currentStreak)
+      state.maxStreak[finishingPlayerIndex] = Math.max(
+        state.maxStreak[finishingPlayerIndex],
+        currentStreak
+      )
     }
   } else {
     if (state.playerIds.length === 1) {

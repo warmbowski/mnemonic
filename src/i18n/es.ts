@@ -13,7 +13,7 @@ const MESSAGES_ES: Translations = {
     `Has encontrado ${count} hongos ${pl(count, "juego", "juegos")}.`,
   matchesThem: (name: string, count: number) =>
     `${name} ha encontrado ${count} hongos ${pl(count, "juego", "juegos")}.`,
-  biggestStreak: (count: number) => `Racha más grande: ${count}`,
+  biggestStreak: (count: number) => `Tu racha más grande: ${count}`,
   won: () => "Ganaste!",
   lost: (name: string) => `¡${name} ganó!`,
   tie: () => "¡Empate a cero!",

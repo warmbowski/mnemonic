@@ -25,7 +25,7 @@ export const MUSHROOM_HUNTER_THEME: Theme = {
   itemNames: [
     // row 1
     "Gossifleure",
-    "Bluffbroom's Cherrybark",
+    "Bluffbroom",
     "Sherrycap",
     "Woodstool",
     "Eldertwig",

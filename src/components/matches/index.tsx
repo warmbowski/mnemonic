@@ -57,9 +57,10 @@ export function Matches() {
   }, [game, showMatches, yourPlayerId])
   const turnCount = useMemo(
     () =>
-      game?.turnHistory.filter(
-        (turn) =>
-          turn.playerId === showMatches || turn.playerId === yourPlayerId
+      game?.turnHistory.filter((turn) =>
+        showMatches
+          ? turn.playerId === showMatches
+          : turn.playerId === yourPlayerId
       ).length || 0,
     [game?.turnHistory, showMatches, yourPlayerId]
   )
@@ -70,11 +71,15 @@ export function Matches() {
     }
   }, [game?.gameOverResults, setShowMatches, yourPlayerId])
 
+  const playerIndex = useMemo(
+    () => getPlayerIndex(game || null, showMatches || yourPlayerId),
+    [game, showMatches, yourPlayerId]
+  )
+
   if (!game) {
     return
   }
 
-  const playerIndex = getPlayerIndex(game, showMatches || yourPlayerId)
   const initial = {
     top: isSpectator ? "110vh" : `calc(100vh - ${getClosedDrawerOffset()}px)`,
   }
@@ -123,8 +128,10 @@ export function Matches() {
             ? t.matchesThem(player.displayName, playerMatches.length)
             : t.noMatchesThem(player.displayName)}
       </p>
-      {game.maxStreak > 0 && (
-        <p style={{ textAlign: "center" }}>{t.biggestStreak(game.maxStreak)}</p>
+      {game.maxStreak[playerIndex] > 0 && (
+        <p style={{ textAlign: "center" }}>
+          {t.biggestStreak(game.maxStreak[playerIndex])}
+        </p>
       )}
       <div className={styles.matchesContainer}>
         {playerMatches.length > 0 && (

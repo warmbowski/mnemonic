@@ -15,7 +15,7 @@ const MESSAGES_EN = {
     `You have found ${count} mushroom ${pl(count, "set", "sets")}.`,
   matchesThem: (name: string, count: number) =>
     `${name} has found ${count} mushroom ${pl(count, "set", "sets")}.`,
-  biggestStreak: (count: number) => `Biggest streak: ${count}`,
+  biggestStreak: (count: number) => `Your biggest streak: ${count}`,
   won: () => "You won the game!",
   lost: (name: string) => `${name} won the game!`,
   tie: () => "It's a tie!",

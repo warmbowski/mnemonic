@@ -33,7 +33,7 @@ export interface GameState {
   turnHistory: Turn[]
   gameOverResults?: Record<PlayerId, GameResult>
   theme?: string
-  maxStreak: number
+  maxStreak: number[]
 }
 type GameActions = {
   revealItem: (cardIndex: number) => void
@@ -74,7 +74,7 @@ Rune.initLogic({
         streak: 0,
       },
       turnHistory: [],
-      maxStreak: 0,
+      maxStreak: allPlayerIds.map(() => 0),
     }
   },
   actions: {
