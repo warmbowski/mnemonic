@@ -5,6 +5,7 @@ import { useAtom } from "jotai"
 import { gameStateAtom, messagesAtom, yourPlayerIdAtom } from "../../game-state"
 import * as styles from "./styles.css"
 import { Tile } from "../tile"
+import { useMemo } from "react"
 
 const grassData = [...Array(100).keys()].map((k) => ({
   key: String(k),
@@ -17,6 +18,10 @@ export function Board() {
   const [game] = useAtom(gameStateAtom)
   const [yourPlayerId] = useAtom(yourPlayerIdAtom)
   const [t] = useAtom(messagesAtom)
+
+  const isPlayer = useMemo(() => {
+    return game?.playerIds.some((id) => id === yourPlayerId)
+  }, [game?.playerIds, yourPlayerId])
 
   if (!game) {
     return
@@ -53,12 +58,14 @@ export function Board() {
           />
         ))}
       </div>
-      {game.currentTurn?.playerId === yourPlayerId && (
+      {isPlayer && game.currentTurn?.playerId === yourPlayerId && (
         <motion.h3
+          key="your-turn-message"
           className={styles.message}
           initial={{
             height: 0,
             width: 0,
+            backgroundColor: "goldenrod",
           }}
           animate={{
             height: "auto",
@@ -68,6 +75,22 @@ export function Board() {
           {game.currentTurn.streak > 0
             ? t.onAStreak(game.currentTurn.streak)
             : t.yourTurn()}
+        </motion.h3>
+      )}
+      {isPlayer && game.currentTurn?.playerId !== yourPlayerId && (
+        <motion.h3
+          key="not-your-turn-message"
+          className={styles.notYourTurnMessage}
+          initial={{
+            height: 0,
+            width: 0,
+          }}
+          animate={{
+            height: "auto",
+            width: "100%",
+          }}
+        >
+          {t.waitYourTurn()}
         </motion.h3>
       )}
     </>

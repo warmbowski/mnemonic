@@ -24,6 +24,7 @@ const MESSAGES_ES: Translations = {
   inTries: (count: number) => `en ${count} ${pl(count, "turno", "turnos")}`,
   // Board component
   yourTurn: () => "¡¡Te toca!!",
+  waitYourTurn: () => "Espera tu toca",
   onAStreak: (count: number) => `¡¡En una racha de ${count}!!`,
   // Players component
   $: () => "$",

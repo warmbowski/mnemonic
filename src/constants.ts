@@ -21,6 +21,9 @@ interface Theme {
   itemNames: string[]
 }
 
+/**
+ * color palette for this theme https://lospec.com/palette-list/resurrect-64
+ */
 export const MUSHROOM_HUNTER_THEME: Theme = {
   itemNames: [
     // row 1

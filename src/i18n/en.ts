@@ -25,6 +25,7 @@ const MESSAGES_EN = {
   inTries: (count: number) => `in ${count} ${pl(count, "try", "tries")}`,
   // Board component
   yourTurn: () => "Your Turn!!",
+  waitYourTurn: () => "Wait for your turn",
   onAStreak: (count: number) => `On a streak of ${count}!!`,
   // Players component
   $: () => "$",

@@ -55,3 +55,10 @@ export const message = style({
   boxShadow:
     "-6px 0 0 0 #6e2727, 6px 0 0 0 #6e2727, 0 -6px 0 0 #6e2727, 0 6px 0 0 #6e2727",
 })
+
+export const notYourTurnMessage = style([
+  message,
+  {
+    backgroundColor: "#8fd3ff",
+  },
+])
