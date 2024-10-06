@@ -43,7 +43,7 @@ export function Board() {
       >
         {game.matrix.map((item, index) => (
           <Tile
-            key={item.id}
+            key={`${game.signature}-${item.id}`}
             tile={item}
             delayIn={index * 0.05}
             onClick={() => {

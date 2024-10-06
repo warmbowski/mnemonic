@@ -50,8 +50,8 @@ export const item = style({
   width: "70%",
   height: "70%",
   transformOrigin: "50% 100%",
-  backgroundSize: "cover",
-  backgroundPosition: "50% 20%",
+  backgroundSize: "contain",
+  backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
 })
 

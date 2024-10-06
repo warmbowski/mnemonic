@@ -1,5 +1,5 @@
 import { PlayerId } from "rune-sdk"
-import { GameResult, GameStateWithPersited } from "../logic"
+import { GameResult, GameStateWithPersited, PersistedDataV1 } from "../logic"
 import {
   getCurrentPlayerId,
   getNextPlayerId,
@@ -145,11 +145,13 @@ export function persistsPersonalBests(
   const version = state.persisted?.[playerId].version || 0
 
   if (version <= 1) {
-    const bests = state.persisted?.[playerId].personalBests || {
+    const bests: PersistedDataV1["personalBests"] = state.persisted?.[playerId]
+      .personalBests || {
       totalGames: 0,
       totalMatches: 0,
       totalTurns: 0,
-      highestValue: 0,
+      totalEarnings: 0,
+      highestEarnings: 0,
       highestStreak: 0,
       fewestTurns: Infinity,
     }
@@ -158,7 +160,8 @@ export function persistsPersonalBests(
       totalGames: bests.totalGames + 1,
       totalMatches: bests.totalMatches + playerMatchList.totalMatches,
       totalTurns: bests.totalTurns + thisGameTurns,
-      highestValue: Math.max(bests.highestValue, thisGameValue),
+      totalEarnings: bests.totalEarnings + thisGameValue,
+      highestEarnings: Math.max(bests.highestEarnings, thisGameValue),
       highestStreak: Math.max(bests.highestStreak, thisGameMaxStreak),
       fewestTurns: Math.min(bests.fewestTurns, thisGameTurns),
     }

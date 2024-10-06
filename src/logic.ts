@@ -32,6 +32,7 @@ export interface Turn {
 }
 
 export interface GameState {
+  signature: string
   matrix: Item[]
   playerIds: PlayerId[]
   currentTurn?: Turn
@@ -48,7 +49,8 @@ export interface PersistedDataV1 {
     totalGames: number
     totalMatches: number
     totalTurns: number
-    highestValue: number
+    totalEarnings: number
+    highestEarnings: number
     highestStreak: number
     fewestTurns: number
   }
@@ -91,6 +93,9 @@ Rune.initLogic({
     const startIndex = Math.floor(Math.random() * allPlayerIds.length)
 
     return {
+      // somewhat unique deterministic game signature mainly for
+      // making sure components reset when game restarted
+      signature: shuffledMatrix.map((item) => item.rank).join(""),
       matrix: shuffledMatrix,
       playerIds: allPlayerIds,
       currentTurn: {
