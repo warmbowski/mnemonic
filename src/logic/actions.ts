@@ -1,5 +1,5 @@
 import { PlayerId } from "rune-sdk"
-import { GameResult, GameState } from "../logic"
+import { GameResult, GameStateWithPersited } from "../logic"
 import {
   getCurrentPlayerId,
   getNextPlayerId,
@@ -9,7 +9,7 @@ import {
 
 // logic functions
 export const revealItem = (
-  state: GameState,
+  state: GameStateWithPersited,
   index: number,
   playerId: string
 ) => {
@@ -36,7 +36,7 @@ export const revealItem = (
   }
 }
 
-function checkForMatch(state: GameState) {
+function checkForMatch(state: GameStateWithPersited) {
   // check match logic here
   if (state.currentTurn === undefined) {
     return
@@ -60,7 +60,7 @@ function checkForMatch(state: GameState) {
   }
 }
 
-export function advanceTurn(state: GameState) {
+export function advanceTurn(state: GameStateWithPersited) {
   // advance turn logic here
   const finishingPlayerId = getCurrentPlayerId(state)
   const finishingPlayerIndex = getPlayerIndex(state, finishingPlayerId)
@@ -108,7 +108,7 @@ export function advanceTurn(state: GameState) {
   }
 }
 
-export function endGame(state: GameState) {
+export function computeGameOverResults(state: GameStateWithPersited) {
   // game over logic here
   const sortedPlayerScores = getPlayerMatchLists(state).sort((a, b) =>
     a.totalMatchValue > b.totalMatchValue ? -1 : 1
@@ -127,4 +127,42 @@ export function endGame(state: GameState) {
       playerStats.totalMatchValue === maxScore ? winResult : loseResult
     return acc
   }, {})
+}
+
+export function persistsPersonalBests(
+  state: GameStateWithPersited,
+  playerId: string
+) {
+  // persisted data logic here
+  const playerIndex = getPlayerIndex(state, playerId)
+  const playerMatchList = getPlayerMatchLists(state)[playerIndex]
+  const thisGameValue = playerMatchList.totalMatchValue
+  const thisGameMaxStreak = state.maxStreak[playerIndex]
+  const thisGameTurns = state.turnHistory.filter(
+    (t) => t.playerId === playerId
+  ).length
+
+  const version = state.persisted?.[playerId].version || 0
+
+  if (version <= 1) {
+    const bests = state.persisted?.[playerId].personalBests || {
+      totalGames: 0,
+      totalMatches: 0,
+      totalTurns: 0,
+      highestValue: 0,
+      highestStreak: 0,
+      fewestTurns: Infinity,
+    }
+
+    state.persisted[playerId].personalBests = {
+      totalGames: bests.totalGames + 1,
+      totalMatches: bests.totalMatches + playerMatchList.totalMatches,
+      totalTurns: bests.totalTurns + thisGameTurns,
+      highestValue: Math.max(bests.highestValue, thisGameValue),
+      highestStreak: Math.max(bests.highestStreak, thisGameMaxStreak),
+      fewestTurns: Math.min(bests.fewestTurns, thisGameTurns),
+    }
+
+    state.persisted[playerId].version = 1
+  }
 }

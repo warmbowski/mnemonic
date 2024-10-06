@@ -1,5 +1,5 @@
 import { PlayerId } from "rune-sdk"
-import { GameState, Item } from "../logic"
+import { GameStateWithPersited, Item } from "../logic"
 import { MUSHROOM_HUNTER_THEME } from "../constants"
 
 interface MatrixConfig {
@@ -62,7 +62,10 @@ export function shuffleMatrix<T>(list: T[]) {
 }
 
 // utility functions
-export function getPlayerIndex(state: GameState | null, playerId: string) {
+export function getPlayerIndex(
+  state: GameStateWithPersited | null,
+  playerId: string
+) {
   if (!state) {
     return -1
   }
@@ -70,17 +73,17 @@ export function getPlayerIndex(state: GameState | null, playerId: string) {
   return state.playerIds.findIndex((id) => id === playerId)
 }
 
-export function getCurrentPlayerId(state: GameState) {
+export function getCurrentPlayerId(state: GameStateWithPersited) {
   return state.currentTurn?.playerId || ""
 }
 
-export function getNextPlayerId(state: GameState) {
+export function getNextPlayerId(state: GameStateWithPersited) {
   const currentPlayerIndex = getPlayerIndex(state, getCurrentPlayerId(state))
   const nextPlayerIndex = (currentPlayerIndex + 1) % state.playerIds.length
   return state.playerIds[nextPlayerIndex]
 }
 
-export function getPlayerMatchLists(state?: GameState) {
+export function getPlayerMatchLists(state?: GameStateWithPersited) {
   if (!state) {
     return []
   }
@@ -101,7 +104,7 @@ export function getPlayerMatchLists(state?: GameState) {
   })
 }
 
-export function getPlayerMatchesById(state?: GameState) {
+export function getPlayerMatchesById(state?: GameStateWithPersited) {
   if (!state) {
     return {}
   }

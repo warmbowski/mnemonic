@@ -1,5 +1,10 @@
-import type { PlayerId, RuneClient } from "rune-sdk"
-import { advanceTurn, endGame, revealItem } from "./logic/actions"
+import type { GameStateWithPersisted, PlayerId, RuneClient } from "rune-sdk"
+import {
+  advanceTurn,
+  computeGameOverResults,
+  persistsPersonalBests,
+  revealItem,
+} from "./logic/actions"
 import { createMatrix, shuffleMatrix } from "./logic/utils"
 
 export type GameResult = "WON" | "LOST" | "TIE"
@@ -35,6 +40,25 @@ export interface GameState {
   theme?: string
   maxStreak: number[]
 }
+
+export interface PersistedDataV1 {
+  version: number
+  onboarded?: boolean
+  personalBests?: {
+    totalGames: number
+    totalMatches: number
+    totalTurns: number
+    highestValue: number
+    highestStreak: number
+    fewestTurns: number
+  }
+}
+
+export type GameStateWithPersited = GameStateWithPersisted<
+  GameState,
+  PersistedDataV1
+>
+
 type GameActions = {
   revealItem: (cardIndex: number) => void
   revertUnmatchedItems: (lastTurn: Turn) => void
@@ -43,12 +67,13 @@ type GameActions = {
 }
 
 declare global {
-  const Rune: RuneClient<GameState, GameActions>
+  const Rune: RuneClient<GameState, GameActions, PersistedDataV1>
 }
 
 Rune.initLogic({
   minPlayers: 1,
   maxPlayers: 4,
+  persistPlayerData: true,
   setup: (allPlayerIds) => {
     const matrixConfig = {
       [-20]: 2,
@@ -93,10 +118,11 @@ Rune.initLogic({
     advanceTurn: (_, { game }) => {
       advanceTurn(game)
     },
-    endGame: (_, { game }) => {
-      endGame(game)
+    endGame: (_, { game, playerId }) => {
+      computeGameOverResults(game)
 
       if (game.gameOverResults) {
+        persistsPersonalBests(game, playerId)
         Rune.gameOver({
           players: game.gameOverResults,
           // delayPopUp: true, // to be used with Rune.showGameOverPopUp()

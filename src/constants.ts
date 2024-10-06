@@ -24,7 +24,7 @@ interface Theme {
 export const MUSHROOM_HUNTER_THEME: Theme = {
   itemNames: [
     // row 1
-    "Gossifleure",
+    "Lefleure",
     "Bluffbroom",
     "Sherrycap",
     "Woodstool",
@@ -43,11 +43,11 @@ export const MUSHROOM_HUNTER_THEME: Theme = {
     "Gruntake",
     // row 3
     "Gentleman’s Pinkie",
-    "The Patriot",
+    "Compatriot",
     "Footstabber",
     "Nightvision",
     "Grapelump",
-    "Farfetcher",
+    "Farfletcher",
     "Pompadour",
     "Vassalworm",
     // row 4
@@ -62,21 +62,21 @@ export const MUSHROOM_HUNTER_THEME: Theme = {
     // row 5
     "Woodchip",
     "Truckasaurus",
-    "Neatroof",
+    "Neatloaf",
     "Ghostcostume",
     "Dinofoot",
     "Tacklebulb",
     "Schemer",
     "Shamstone",
     // row 6
-    "Lieluck",
+    "Periwinkles",
     "Marblina",
     "Gnometop",
     "Bakerscap",
     "Devil's Claw",
     "Plantain",
     "Ladylegs",
-    "Periwinkles's Bumpkin",
+    "Lieluck",
   ],
   images: {
     mushrooms: [
