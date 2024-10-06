@@ -15,7 +15,7 @@ interface MatrixConfig {
 
 // initialize game functions
 export function createMatrix(config: MatrixConfig) {
-  const uniqueItems = Object.entries(config).reduce<
+  const uniqueItems = shuffleMatrix(Object.entries(config)).reduce<
     Omit<Item, "id" | "index">[]
   >((acc, [score, count]) => {
     const list = []
