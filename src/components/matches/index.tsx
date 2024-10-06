@@ -131,8 +131,15 @@ export function Matches() {
           <>
             <ul className={styles.pairList}>
               {playerMatches.map((match, index) => (
-                <li key={index} className={styles.pairItem}>
+                <li
+                  key={index}
+                  className={clsx(
+                    styles.pairItem,
+                    `player${getPlayerIndex(game, match.guessed)}`
+                  )}
+                >
                   <img
+                    className={styles.image}
                     src={MUSHROOM_HUNTER_THEME.images.mushrooms[match.rank]}
                     alt={`Mushroom ${match.rank}`}
                   />
@@ -159,10 +166,22 @@ export function Matches() {
                       />
                     </>
                   )}
-                  <div>{t.value(match.score)}</div>
-                  {match.multiplier > 1 && (
-                    <div className={styles.multiplier}>x{match.multiplier}</div>
-                  )}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      gap: 4,
+                      width: "100%",
+                    }}
+                  >
+                    <span>{t.value(match.score)}</span>
+                    {match.multiplier > 1 && (
+                      <span className={styles.multiplier}>
+                        x{match.multiplier}
+                      </span>
+                    )}
+                  </div>
+                  <div>{MUSHROOM_HUNTER_THEME.itemNames[match.rank]}</div>
                 </li>
               ))}
             </ul>

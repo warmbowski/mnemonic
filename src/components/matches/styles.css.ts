@@ -81,7 +81,7 @@ export const pairList = style({
 export const pairItem = style({
   margin: "4px",
   padding: "4px",
-  // border: `1px solid ${vars.colors.darkText}`,
+  border: `2px solid black`,
   borderRadius: "4px",
   display: "flex",
   flexDirection: "column",
@@ -89,6 +89,20 @@ export const pairItem = style({
   alignItems: "flex-start",
   gap: "4px",
   position: "relative",
+  selectors: {
+    "&.player0": {
+      borderColor: vars.colors.player0.dark,
+    },
+    "&.player1": {
+      borderColor: vars.colors.player1.dark,
+    },
+    "&.player2": {
+      borderColor: vars.colors.player2.dark,
+    },
+    "&.player3": {
+      borderColor: vars.colors.player3.dark,
+    },
+  },
 })
 
 export const matchAnimation = keyframes({
@@ -112,6 +126,7 @@ const badMatch = style({
 export const badMatch1 = style([
   badMatch,
   {
+    left: "calc(50% - 28px)",
     animation: `${matchAnimation} 1s steps(8) infinite`,
   },
 ])
@@ -119,7 +134,7 @@ export const badMatch1 = style([
 export const badMatch2 = style([
   badMatch,
   {
-    right: 8,
+    left: "calc(50% - 4px)",
     animation: `${matchAnimation} 1s steps(8) infinite`,
     animationDelay: "0.8s",
   },
@@ -127,18 +142,15 @@ export const badMatch2 = style([
 
 export const image = style({
   position: "relative",
+  left: "calc(50% - 28px)",
 })
 
 export const secondImage = style({
   position: "absolute",
   top: 8,
-  right: 8,
+  left: "calc(50% - 4px)",
 })
 
 export const multiplier = style({
-  position: "absolute",
   color: "#ea4f36",
-  bottom: "1em",
-  right: 0,
-  zIndex: 20,
 })

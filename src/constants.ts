@@ -18,11 +18,69 @@ interface Theme {
     revert: string
     yourTurn: string
   }
+  itemNames: string[]
 }
 
 export const MUSHROOM_HUNTER_THEME: Theme = {
+  itemNames: [
+    // row 1
+    "Gossifleure",
+    "Bluffbroom's Cherrybark",
+    "Sherrycap",
+    "Woodstool",
+    "Eldertwig",
+    "Couchcushion",
+    "Bowlfeeder",
+    "Cinnabonnet",
+    // row 2
+    "Burndtumbrella",
+    "Candiewick",
+    "Tumbleweezer",
+    "Sparrowshroom",
+    "Formaldehide",
+    "Bumblepatch",
+    "Buttontops",
+    "Gruntake",
+    // row 3
+    "Gentleman’s Pinkie",
+    "The Patriot",
+    "Footstabber",
+    "Nightvision",
+    "Grapelump",
+    "Farfetcher",
+    "Pompadour",
+    "Vassalworm",
+    // row 4
+    "Porcelette",
+    "Bumblebush",
+    "Trumpetcleaner",
+    "Ogleberry Jam",
+    "Tippletoe",
+    "Skarlet Fringed",
+    "Humblebrag",
+    "Pickle Fringed",
+    // row 5
+    "Woodchip",
+    "Truckasaurus",
+    "Neatroof",
+    "Ghostcostume",
+    "Dinofoot",
+    "Tacklebulb",
+    "Schemer",
+    "Shamstone",
+    // row 6
+    "Lieluck",
+    "Marblina",
+    "Gnometop",
+    "Bakerscap",
+    "Devil's Claw",
+    "Plantain",
+    "Ladylegs",
+    "Periwinkles's Bumpkin",
+  ],
   images: {
     mushrooms: [
+      // row 1
       "themes/mushroom-hunter/mushrooms/Icon1.png",
       "themes/mushroom-hunter/mushrooms/Icon2.png",
       "themes/mushroom-hunter/mushrooms/Icon3.png",
@@ -31,6 +89,7 @@ export const MUSHROOM_HUNTER_THEME: Theme = {
       "themes/mushroom-hunter/mushrooms/Icon6.png",
       "themes/mushroom-hunter/mushrooms/Icon7.png",
       "themes/mushroom-hunter/mushrooms/Icon8.png",
+      // row 2
       "themes/mushroom-hunter/mushrooms/Icon9.png",
       "themes/mushroom-hunter/mushrooms/Icon10.png",
       "themes/mushroom-hunter/mushrooms/Icon11.png",
@@ -39,6 +98,7 @@ export const MUSHROOM_HUNTER_THEME: Theme = {
       "themes/mushroom-hunter/mushrooms/Icon14.png",
       "themes/mushroom-hunter/mushrooms/Icon15.png",
       "themes/mushroom-hunter/mushrooms/Icon16.png",
+      // row 3
       "themes/mushroom-hunter/mushrooms/Icon17.png",
       "themes/mushroom-hunter/mushrooms/Icon18.png",
       "themes/mushroom-hunter/mushrooms/Icon19.png",
@@ -47,6 +107,7 @@ export const MUSHROOM_HUNTER_THEME: Theme = {
       "themes/mushroom-hunter/mushrooms/Icon22.png",
       "themes/mushroom-hunter/mushrooms/Icon23.png",
       "themes/mushroom-hunter/mushrooms/Icon24.png",
+      // row 4
       "themes/mushroom-hunter/mushrooms/Icon25.png",
       "themes/mushroom-hunter/mushrooms/Icon26.png",
       "themes/mushroom-hunter/mushrooms/Icon27.png",
@@ -55,6 +116,7 @@ export const MUSHROOM_HUNTER_THEME: Theme = {
       "themes/mushroom-hunter/mushrooms/Icon30.png",
       "themes/mushroom-hunter/mushrooms/Icon31.png",
       "themes/mushroom-hunter/mushrooms/Icon32.png",
+      // row 5
       "themes/mushroom-hunter/mushrooms/Icon33.png",
       "themes/mushroom-hunter/mushrooms/Icon34.png",
       "themes/mushroom-hunter/mushrooms/Icon35.png",
@@ -63,6 +125,7 @@ export const MUSHROOM_HUNTER_THEME: Theme = {
       "themes/mushroom-hunter/mushrooms/Icon38.png",
       "themes/mushroom-hunter/mushrooms/Icon39.png",
       "themes/mushroom-hunter/mushrooms/Icon40.png",
+      // row 6
       "themes/mushroom-hunter/mushrooms/Icon41.png",
       "themes/mushroom-hunter/mushrooms/Icon42.png",
       "themes/mushroom-hunter/mushrooms/Icon43.png",
