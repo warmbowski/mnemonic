@@ -4,7 +4,6 @@ A local Mycologist is looking to buy rare mushrooms, but only in pairs. Compete 
 
 <img width="500" alt="Screenshot of Unearthed" src="https://github.com/user-attachments/assets/f02e8edd-86fc-4135-a51f-97ec2893c418">
 
-
 # Mnemonic
 
 An expanded digital version of the basic card matching game Concentration. This is a multiplayer online version built for the Rune social gaming platform.
@@ -18,14 +17,14 @@ An expanded digital version of the basic card matching game Concentration. This 
 - [x] Render players and their basic game stats (number of matches and score)
 - [x] Stub in basic UX design
 - [ ] Add options and start splash screen before gameplay begins
-- [ ] Design a great UI theme with cool animations that make for a very pleasant game experience
-- [ ] i18n the app
+- [x] Design a great UI theme with cool animations that make for a very pleasant game experience
+- [x] i18n the app
 - [ ] support single player mode
 
 #### Expanded gameplay ideas to implement:
 
-- [ ] Support multiplayer > 2
-- [ ] Adjustable game size
+- [x] Support multiplayer > 2
+- [ ] Adjustable game grid size
 - [ ] Game time limit
 - [ ] Turn time limit
 - [ ] Advantage (powerup) effects for specific matches per game
@@ -34,10 +33,10 @@ An expanded digital version of the basic card matching game Concentration. This 
   - Revoke other players match
   - Swap any two cards without other player knowing
 - [ ] Disadvantage effects for specific matches per game
-  - You grid gets shuffled
+  - Your grid gets shuffled
   - One of your matches is revoked
   - Lose points equal to score of next item revealed
-- [ ] Persist game stats for each player: PRs, Totals, etc
+- [x] Persist game stats for each player: PRs, Totals, etc
 
 #### Expanded UX ideas:
 
